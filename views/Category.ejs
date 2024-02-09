@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category Page</title>
+  
+  <!-- SweetAlert CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <style>
+    /* Your custom styles here */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 250px;
+      background-color: #0b0a0a;
+      padding-top: 25px;
+      color: white;
+    }
+
+    .sidebar a {
+      font-size: 17px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .sidebar h2 {
+      color: rgb(248, 248, 249);
+      font-size:30px;
+    }
+
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+    }
+
+    .table-responsive {
+      /* Style to prevent table overflow */
+      overflow-x: auto;
+    }
+
+    .button:hover {
+      box-shadow: 0px 0px 5px #2196F3, /* Blue box shadow color */
+                  0px 0px 30px #2196F3,
+                  0px 0px 90px #2196F3;
+    }
+
+    .button1:hover {
+      box-shadow: 0px 0px 5px #fe21a2,
+                   0px 0px 30px #fe21a2,
+                   0px 0px 90px #fe21a2;
+    }
+
+    /* ////////////////////Toggle dark mode button//////////////////////// */
+.toggle-dark-theme {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.toggle-dark-theme button {
+    width: 70px;
+    background-color: #ccc;
+    border-radius: 20px;
+    border: none;
+    position: relative;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.toggle-dark-theme .icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: #32006a;
+    position: relative;
+    transition: all 0.5s ease;
+}
+
+.toggle-dark-theme .icon::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 400;
+    content: "\f186";
+    position: absolute;
+    color: #f5ecec;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+}
+
+body.dark {
+    background-color: #252525; /* Dark mode background color */
+    color: #fff; /* Dark mode text color */
+}
+
+/* Dark mode styles for sidebar */
+body.dark .sidebar {
+    background-color: #252525;
+    color: #fff;
+    border-right: 1px solid #555; /* Dark mode sidebar border color */
+}
+
+body.dark .sidebar h2 {
+    color: #fcc288; /* Heading color in dark mode sidebar */
+}
+
+body.dark .sidebar a {
+    color: #0013f8; /* Link color in dark mode */
+}
+
+/* Dark mode table styles */
+body.dark .main-content table {
+    border-color: #555; /* Dark mode table border color */
+}
+
+body.dark .main-content th,
+body.dark .main-content td {
+    border-color: #444; /* Dark mode table cell border color */
+    color: #fff;
+}
+
+/* Dark mode styles for alternating row colors */
+body.dark .main-content tbody tr:nth-child(even) {
+    background-color: #353535; /* Dark mode alternate row color */
+    color: #fff;
+}
+
+/* Dark mode styles for table header */
+body.dark .main-content thead {
+    background-color: #303030; /* Dark mode table header background color */
+}
+
+/* Dark mode toggle button styles */
+body.dark .toggle-dark-theme .icon {
+    transform: translateX(calc(100% + 10px));
+    background-color: yellow; /* Dark mode toggle button background color */
+}
+
+body.dark .toggle-dark-theme .icon::before {
+    color: #000;
+    content: "\f185";
+}
+.sidebar .nav-link {
+  margin-bottom: 20px; /* Adjust the value as needed for spacing */
+}
+  </style>
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-3 sidebar">
+      <div style="color:aliceblue"><h2>ℍ𝕆ℝ𝕀ℤ𝕆ℕ 𝕄𝕆𝔹𝕀𝕃𝔼𝕊</h2></div>
+      <br>
+      <ul class="nav flex-column ">
+        <li class="nav-item button">
+          <a class="nav-link" href="/admin_Dashboard"><i class="fas fa-home"></i> Dashboard</a>
+        </li>
+        <li class="nav-item button">
+          <a class="nav-link" href="/userManagement"><i class="fas fa-users"></i> User Management</a>
+        </li>
+        <li class="nav-item button">
+          <a class="nav-link" href="/productManagement"><i class="fas fa-shopping-cart"></i> Product Management</a>
+        </li>
+        <li class="nav-item button">
+          <a class="nav-link" href="/Category"><i class="fas fa-list"></i> Category</a>
+        </li>
+        <li class="nav-item button">
+          <a class="nav-link" href="/adminOrder"><i class="fas fa-shopping-bag"></i> Order</a>
+        </li>
+        <br>
+        <br>
+        <li class="nav-item button1">
+          <a id="logout-button" class="nav-link button1" href="/admin_Login"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </li>
+        <!-- Add more sidebar links as needed -->
+      </ul>
+    </div>
+ 
+
+
+        <div class="col-md-9 main-content">
+          <div class="container mt-4 content">
+            <h1 class="text-center">Category Page</h1>
+            <br>
+          
+            <div class="row">
+              <div class="col-md-6">
+                  <div class="text-left mb-4">
+                      <a href="/addCategory" class="btn btn-success">Add Category</a>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="input-group mb-3" style="max-width: 300px; float: right;">
+                      <input type="text" id="searchInput" class="form-control" placeholder="Search...">
+                      <div class="input-group-append">
+                          <span class="input-group-text"><i class="fas fa-search"></i></span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th>ID</th>
+                <th>Brand Name</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% categories.forEach((val, index) => { %>
+                <tr>
+                  <td><%= index + 1 %></td>
+                  <td><%= val.BrandName %></td>
+                  <td>
+                    <a href="/UpdateCategoryGet/<%= val._id %>" class="btn btn-primary btn-sm">Update</a>
+                  
+                    <a id="deletecategory" href="/deletecategory/<%= val._id %>" class="btn btn-danger delete-button" data-Category-id="<%= val._id %>">Delete</a>
+                   
+                  </td>
+                </tr>
+                <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Bootstrap JS (Optional for certain features) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<!--//////////////////search///////////////////////////-->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const tableRows = document.querySelectorAll('.table tbody tr');
+
+    searchInput.addEventListener('input', function(event) {
+      const searchTerm = event.target.value.toLowerCase().trim();
+
+      tableRows.forEach(row => {
+        const brandName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+
+        if (brandName.includes(searchTerm)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    });
+  });
+
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const deleteButtons = document.querySelectorAll(".delete-button");
+  
+      deleteButtons.forEach(button => {
+          button.addEventListener("click", function (e) {
+              e.preventDefault();
+  
+              const categoryId = this.getAttribute("data-Category-id");
+  
+              Swal.fire({
+                  title: "Are you sure?",
+                  text: "Do you really want to Delete catergory?",
+                  icon: "question",
+                  showCancelButton: true,
+                  confirmButtonText: "Yes, delete",
+                  cancelButtonText: "No, cancel"
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      // If the user confirms, redirect to the delete product page
+                      window.location.href = "/deletecategory/" + categoryId;
+                  }
+              });
+          });
+      });
+  });
+  
+  </script> 
+  <script>
+    ///////////////logout/////////////////////////
+    document.addEventListener("DOMContentLoaded", function () {
+      const logoutButton = document.getElementById("logout-button");
+  
+      if (logoutButton) {
+        logoutButton.addEventListener("click", function (e) {
+          e.preventDefault(); // Prevent the default link behavior
+  
+          // Use SweetAlert2 for confirmation
+          Swal.fire({
+            title: "Are you sure?",
+            text: "Do you really want to logout?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Yes, logout",
+            cancelButtonText: "No, cancel"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // If the user confirms, redirect to the logout page
+              window.location.href = "/admin_Login";
+            }
+          });
+        });
+      }
+    });
+  </script>  
+</body>
+</html>

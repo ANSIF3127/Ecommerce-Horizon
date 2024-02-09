@@ -1,0 +1,453 @@
+<%- include('nav') %>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Link to your custom CSS file -->
+  <link href="styles.css" rel="stylesheet">
+
+  <!-- Bootstrap CSS link -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- Font Awesome CSS link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+  </head>
+
+  <body>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap");
+
+      *,
+      ::after,
+      ::before {
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Lato", sans-serif;
+      }
+
+      :root {
+        --bg-color: #020203;
+        --primary-color: #006ce0;
+        --border-radius: 6px;
+        --color: #2b82df;
+      }
+
+      .sidebar {
+        height: 90vh;
+        /* Adjusted height */
+        position: fixed;
+        top: 10%;
+        /* Center vertically */
+        left: 0;
+        /* Align to the left */
+        width: 300px;
+        background: var(--bg-color);
+        transition: left 0.5s ease;
+      }
+
+      .sidebar ul {
+        list-style: none;
+        margin-top: 5rem;
+        height: 100%;
+      }
+
+      .sidebar ul li {
+        margin-top: 1rem;
+        padding: 0.3rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
+
+      .sidebar ul li.active {
+        background: var(--primary-color);
+        border-bottom-left-radius: var(--border-radius);
+        border-top-left-radius: var(--border-radius);
+        transition: background 0.5s linear;
+        box-shadow: rgba(20, 114, 238, 0.918) 0px 2px 10px 0px;
+      }
+
+      .sidebar li .icon {
+        margin-right: 1rem;
+        padding: 0.5rem;
+      }
+
+      .sidebar li a {
+        text-decoration: none;
+        font-size: 1.3rem;
+        color: white;
+        display: flex;
+        align-items: center;
+      }
+
+      .sidebar li a:hover {
+        margin-left: 2px;
+        color: var(--color);
+      }
+
+      .close-icon {
+        color: white;
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 2.2rem;
+        margin: 1rem;
+        cursor: pointer;
+      }
+
+      .close-icon h2 {
+        color: aliceblue;
+        margin: 20px 0 10px;
+        /* Added space after heading and before items */
+        font-size: 1.5rem;
+      }
+
+      .close-icon img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 1rem;
+      }
+
+      .hamburger-menu {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 1rem;
+        font-size: 3rem;
+        color: #006ce0;
+        cursor: pointer;
+      }
+
+      body .toggle.sidebar {
+        left: -300px;
+      }
+
+      body.toggle.section {
+        margin-left: 0;
+        width: 100%;
+      }
+
+      .button:hover {
+        box-shadow: 0px 0px 5px #2196F3,
+          /* Blue box shadow color */
+          0px 0px 30px #2196F3, 0px 0px 90px #2196F3;
+      }
+
+      .button1:hover {
+        box-shadow: 0px 0px 5px #fe21a2, 0px 0px 30px #fe21a2, 0px 0px 90px #fe21a2;
+      }
+    </style>
+    <style>
+      body {
+        background-color: #f9f9fa
+      }
+
+      .padding {
+        padding: 3rem !important
+      }
+
+      .user-card-full {
+        overflow: hidden;
+      }
+
+      .card {
+        border-radius: 5px;
+        -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+        box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+        border: none;
+        margin-bottom: 30px;
+      }
+
+      .m-r-0 {
+        margin-right: 0px;
+      }
+
+      .m-l-0 {
+        margin-left: 0px;
+      }
+
+      .user-card-full .user-profile {
+        border-radius: 5px 0 0 5px;
+      }
+
+      .bg-c-lite-green {
+        background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
+        background: linear-gradient(to right, #ee5a6f, #f29263);
+      }
+
+      .user-profile {
+        padding: 20px 0;
+      }
+
+      .card-block {
+        padding: 1.25rem;
+      }
+
+      .m-b-25 {
+        margin-bottom: 25px;
+      }
+
+      .img-radius {
+        border-radius: 5px;
+      }
+
+
+
+      h6 {
+        font-size: 14px;
+      }
+
+      .card .card-block p {
+        line-height: 25px;
+      }
+
+      @media only screen and (min-width: 1400px) {
+        p {
+          font-size: 14px;
+        }
+      }
+
+      .card-block {
+        padding: 1.25rem;
+      }
+
+      .b-b-default {
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .m-b-20 {
+        margin-bottom: 20px;
+      }
+
+      .p-b-5 {
+        padding-bottom: 5px !important;
+      }
+
+      .card .card-block p {
+        line-height: 25px;
+      }
+
+      .m-b-10 {
+        margin-bottom: 10px;
+      }
+
+      .text-muted {
+        color: #919aa3 !important;
+      }
+
+      .b-b-default {
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .f-w-600 {
+        font-weight: 600;
+      }
+
+      .m-b-20 {
+        margin-bottom: 20px;
+      }
+
+      .m-t-40 {
+        margin-top: 20px;
+      }
+
+      .p-b-5 {
+        padding-bottom: 5px !important;
+      }
+
+      .m-b-10 {
+        margin-bottom: 10px;
+      }
+
+      .m-t-40 {
+        margin-top: 20px;
+      }
+
+      .user-card-full .social-link li {
+        display: inline-block;
+      }
+
+      .user-card-full .social-link li a {
+        font-size: 20px;
+        margin: 0 10px 0 0;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .button-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        /* Add margin to separate buttons from card content */
+      }
+
+      .btn-primary {
+        padding: 0.5rem 1rem;
+        background-color: #007bff;
+        border-color: #007bff;
+      }
+
+      .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+      }
+
+      .change-password-btn {
+        text-align: center;
+      }
+    </style>
+
+    <body>
+      <div class="hamburger-menu">
+        <ion-icon name="menu-outline" id="hamburger-icon"></ion-icon>
+      </div>
+
+      <div class="sidebar" id="sidebars">
+        <div class="close-icon" id="close" onclick="closeNav() ">
+          <div style="color:aliceblue">
+            <h2></h2>
+          </div>
+          <br>
+          <ion-icon name="close-outline"></ion-icon>
+        </div>
+
+        <ul class="links">
+          <!-- Existing navigation items... -->
+
+          <!-- New Navigation Items with Bootstrap and Font Awesome -->
+          <li class="link">
+            <a href="/profile" class="nav-link button">
+              <i class="fas fa-user icon"></i> Profile
+            </a>
+          </li>
+          <li class="link">
+            <a href="/address" class="nav-link button">
+              <i class="fas fa-address-book icon"></i> Address
+            </a>
+          </li>
+          <li class="link">
+            <a href="/UserOrder" class="nav-link button">
+              <i class="fas fa-shopping-cart icon"></i> Orders
+            </a>
+          </li>
+          <li class="link">
+            <a href="/Home" class="nav-link button">
+              <i class="fas fa-shopping-bag icon"></i> Shop
+            </a>
+          </li>
+          <br>
+          <br>
+          <br>
+          <br>
+
+          <li class="link">
+            <a href="/" onclick="confirmDelete()" class="nav-link button1">
+              <i class="fas fa-sign-out-alt icon"></i> Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+
+
+      <br>
+      <br>
+      <br>
+      <div class="page-content page-container" id="page-content">
+        <div class="padding">
+          <div class="row container d-flex justify-content-center">
+            <div class="col-xl-6 col-md-12">
+
+              <div class="card user-card-full">
+
+                <div class="row m-l-0 m-r-0">
+                  <div class="col-sm-4 bg-c-lite-green user-profile">
+                    <div class="card-block text-center text-white">
+                      <div class="m-b-25">
+                        <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius"
+                          alt="User-Profile-Image">
+                      </div>
+                      <h6 class="f-w-600">
+                        <%= profileData.Username %>
+                      </h6>
+                      <br>
+
+                      <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                    </div>
+                  </div>
+                  <div class="col-sm-8">
+                    <div class="card-block">
+                      <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <p class="m-b-10 f-w-600">Email</p>
+                          <h6 class="text-muted f-w-400">
+                            <%= profileData.email %>
+                          </h6>
+                        </div>
+                     
+                       
+                        <div class="col-sm-6">
+                          <p class="m-b-10 f-w-600">Phone</p>
+                          <h6 class="text-muted f-w-400">
+                            <%= address.phone %>
+                          </h6>
+                        </div>
+
+                      </div>
+                    </div>
+                    <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h6>
+
+                    <div class="container-fluid">
+                      <div class="row justify-content-end">
+                        <section class="section mb-4 col-md-6 button-section">
+                          <a href="/editProfile"><button class="btn btn-primary btn-block">Change Profile</button></a>
+                        </section>
+                        <section class="section mb-4 col-md-6 button-section">
+                          <a href="/changePassword"><button class="btn btn-primary btn-block">Change
+                              Password</button></a>
+                        </section>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <script>
+        const hamburgerMenu = document.getElementById("hamburger-icon");
+        const link = document.querySelectorAll(".link");
+        const closeBtn = document.getElementById("close");
+
+        for (let i = 0; i < link.length; i++) {
+          link[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+          });
+        }
+
+        hamburgerMenu.addEventListener("click", function () {
+          const sidebar = document.getElementById("sidebars");
+          sidebar.classList.toggle("toggle");
+        });
+
+        function closeNav() {
+          const sidebar = document.getElementById("sidebars");
+          sidebar.classList.toggle("toggle");
+        }
+      </script>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </body>
+
+    </html>

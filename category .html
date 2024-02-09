@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category Page</title>
+    <!-- SweetAlert CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Your custom styles here */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 250px;
+      background-color: #0b0a0a;
+      padding-top: 25px;
+      color: white;
+    }
+
+    .sidebar a {
+      font-size: 20px;
+    }
+
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+    }
+    .table-responsive {
+      /* Style to prevent table overflow */
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-3 sidebar">
+      <div style="color:aliceblue"><h2>G-CART</h2></div> 
+      <br>
+      <ul class="nav flex-column ">
+       
+          <li class="nav-item">
+              <a class="nav-link" href="/admin_Dashboard">Dashboard</a>
+          </li>
+         
+          <li class="nav-item">
+              <a class="nav-link" href="/userManagement">User Management</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/productManagement">ProductManagement</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/Category">Category</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/adminOrder">Order</a>
+        </li>
+          <li class="nav-item">
+            <a id="logout-button" class="nav-link" href="/admin_Login">Logout</a>
+          </li>
+          <!-- Add more sidebar links as needed -->
+      </ul>
+  </div>
+
+ 
+
+
+        <div class="col-md-9 main-content">
+          <div class="container mt-4 content">
+            <h1 class="text-center">Category Page</h1>
+            <br>
+          
+            <div class="row">
+              <div class="col-md-6">
+                  <div class="text-left mb-4">
+                      <a href="/addCategory" class="btn btn-success">Add Category</a>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="input-group mb-3" style="max-width: 300px; float: right;">
+                      <input type="text" id="searchInput" class="form-control" placeholder="Search...">
+                      <div class="input-group-append">
+                          <span class="input-group-text"><i class="fas fa-search"></i></span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th>ID</th>
+                <th>Brand Name</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% categories.forEach((val, index) => { %>
+                <tr>
+                  <td><%= index + 1 %></td>
+                  <td><%= val.BrandName %></td>
+                  <td>
+                    <a href="/UpdateCategoryGet/<%= val._id %>/" class="btn btn-primary btn-sm">Update</a>
+                  
+                    <a id="deletecategory" href="/deletecategory/<%= val._id %>" class="btn btn-danger delete-button" data-Category-id="<%= val._id %>">Delete</a>
+                   
+                  </td>
+                </tr>
+                <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Bootstrap JS (Optional for certain features) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<!--//////////////////search///////////////////////////-->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const tableRows = document.querySelectorAll('.table tbody tr');
+
+    searchInput.addEventListener('input', function(event) {
+      const searchTerm = event.target.value.toLowerCase().trim();
+
+      tableRows.forEach(row => {
+        const brandName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+
+        if (brandName.includes(searchTerm)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    });
+  });
+
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const deleteButtons = document.querySelectorAll(".delete-button");
+  
+      deleteButtons.forEach(button => {
+          button.addEventListener("click", function (e) {
+              e.preventDefault();
+  
+              const categoryId = this.getAttribute("data-Category-id");
+  
+              Swal.fire({
+                  title: "Are you sure?",
+                  text: "Do you really want to Delete catergory?",
+                  icon: "question",
+                  showCancelButton: true,
+                  confirmButtonText: "Yes, delete",
+                  cancelButtonText: "No, cancel"
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      // If the user confirms, redirect to the delete product page
+                      window.location.href = "/deletecategory/" + categoryId;
+                  }
+              });
+          });
+      });
+  });
+  
+  </script> 
+  <script>
+    ///////////////logout/////////////////////////
+    document.addEventListener("DOMContentLoaded", function () {
+      const logoutButton = document.getElementById("logout-button");
+  
+      if (logoutButton) {
+        logoutButton.addEventListener("click", function (e) {
+          e.preventDefault(); // Prevent the default link behavior
+  
+          // Use SweetAlert2 for confirmation
+          Swal.fire({
+            title: "Are you sure?",
+            text: "Do you really want to logout?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Yes, logout",
+            cancelButtonText: "No, cancel"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // If the user confirms, redirect to the logout page
+              window.location.href = "/admin_Login";
+            }
+          });
+        });
+      }
+    });
+  </script>  
+</body>
+</html>
+
+
+
+const productlist = async (req, res) => {
+    try {
+      const page = parseInt(req.query.page) || 1;
+      const limit = 3;
+      const skip = (page - 1) * limit;
+  
+      // Retrieve selected category from the request query
+      const selectedCategory = req.query.category;
+  
+      // Define the filter object based on the selected category
+      const filter = { isListed: true };
+      if (selectedCategory) {
+        // If a category is selected, add it to the filter
+        filter.category = selectedCategory;
+      }
+  
+      // Use the filter in the find method
+      const products = await Product.find(filter).skip(skip).limit(limit);
+  
+      const totalProducts = await Product.countDocuments(filter);
+      const totalPages = Math.ceil(totalProducts / limit);
+      const currentPage = Math.min(page, totalPages);
+  
+      const Categorie = await Categorymgm.find();
+      console.log("productlist", Categorie);
+  
+      res.render('ProductList', { products, Categorie, currentPage, totalPages });
+    } catch (error) {
+      console.error("Error fetching products and categories:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  };
+  

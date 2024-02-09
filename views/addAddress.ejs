@@ -1,0 +1,126 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Address Form</title>
+  <meta name="viewport" content="initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body class="container">
+  <form action="/address" method="post" id="addressForm" onsubmit="return validateForm()">
+    
+  <h1>Address</h1>
+  <div class="row">
+    <form class="col s12">
+      
+      <div class="row">
+        <div class="input-field col s12 m12 l6">
+          <input id="firstname" type="text" required class="validate" pattern="^\S.{1,23}\S$" title="Please enter a first Name between 3-25 characters" length="25" name="firstname">
+          <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s12 m12 l6">
+          <input id=" lastname" type="text" required class="validate" pattern="^\S.{1,23}\S$" title="Please enter a last Name between 3-25 characters" length="25" name=" lastname">
+          <label for="last_name">Last Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m12 l6">
+          <input id="address" type="text" required class="validate" pattern="^\S.+" title="Please enter a valid address" name="address">
+          <label for="address">Address</label>
+        </div>
+        <div class="input-field col s12 m12 l6">
+          <input id="city" type="text" required class="validate" title="Please enter a valid City/Town" pattern="^\S.+" name="city">
+          <label for="city">City/Town</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 m12 l6">
+          <label for="state">State</label>
+          <select id="state" class="browser-default" required title="Please select a state" name="state">
+            <option value="" disabled selected>Select a state</option>
+            <option value="ar-us"> kerala</option>
+            <option value="ny-us">Tamil Nadu </option>
+            <option value="ca-us">Karnataka</option>
+            <option value="ar-us"> Rajasthan</option>
+            <option value="ar-us">Gujarat </option>
+          </select>
+        </div>
+        <div class="input-field col s12 m12 l6">
+          <input id="pincode" type="text" required title="Please enter a valid post code
+(e.g., 12345)" pattern="^\d{5}(-\d{4})?$" class="validate" name="pincode">
+          <label for="zip-code">Pincode</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m12 l6">
+          <i class="material-icons prefix">email</i>
+          <input id="email" type="email" required class="validate" title="Please enter a valid email" name="email">
+          <label for="email">Email</label>
+        </div>
+        <div class="input-field col s12 m12 l6">
+          <i class="material-icons prefix">contact_phone</i>
+          <input id="phone" type="tel" required title="Please enter a valid phone number (e.g., (123) 456-7890)" pattern="^[0-9]?\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$" class="validate"name="phone">
+          <label for="phone">Phone Number</label>
+        </div>
+      </div>
+      <button class="waves-effect waves-light btn right" type="submit">Submit</button>
+    </form>
+  </div>
+  
+<script>
+  function validateForm() {
+    var firstname = document.getElementById('firstname').value;
+    var lastname = document.getElementById('lastname').value;
+    var address = document.getElementById('address').value;
+    var city = document.getElementById('city').value;
+    var state = document.getElementById('state').value;
+    var pincode = document.getElementById('pincode').value;
+    var phone = document.getElementById('phone').value;
+    var email = document.getElementById('email').value;
+
+    // Check if fields are empty
+    if (!firstname || !lastname || !address || !city || !state || !pincode || !phone || !email) {
+        alert("All fields must be filled out");
+        return false;
+    }
+
+    // Check if phone number has more than 9 digits
+    var phoneno = /^\d{10}$/;
+    if(!phone.match(phoneno)){
+        alert("Invalid Phone Number");
+        return false;
+    }
+
+    // Check if pincode has more than 4 digits
+    var pincodeno = /^\d{4}$/;
+    if(!pincode.match(pincodeno)){
+        alert("Invalid Pin Code");
+        return false;
+    }
+
+    // Check if email is valid
+    var emailformat = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if(!email.match(emailformat)) {
+        alert("Invalid Email Address");
+        return false;
+    }
+
+    // Check if address is valid
+    var addressformat = /^[#.0-9a-zA-Z\s,-]+$/;
+    if(!address.match(addressformat)) {
+        alert("Invalid Address");
+        return false;
+    }
+
+    return true;
+}
+</script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+
+</body>
+
+</html>

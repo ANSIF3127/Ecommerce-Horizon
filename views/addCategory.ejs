@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Category</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Custom styles */
+    body {
+      background-color: #f8f9fa;
+      padding-top: 50px;
+    }
+    .form-container {
+      max-width: 500px;
+      margin: auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-container">
+          <h1 class="text-center mb-4">Add Category</h1>
+           <!-- Display message if it exists in the response -->
+           <% if (message && message !== "") { %>
+            <p class="alert alert-danger"><%= message %></p>
+          <% } %>
+          <form action="/addCategory" method="post">
+            <div class="form-group">
+              <label for="categoryName">Category Name</label>
+              <input type="text" class="form-control" id="categoryName" name="BrandName" placeholder="Enter category name">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Add Category</button>
+          </form>
+
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+  
+  function validateForm() {
+      var categoryName = document.getElementById('categoryName').value;
+
+      if (categoryName.trim() === '') {
+        document.getElementById('categoryError').innerText = 'Category name cannot be empty';
+        return false;
+      }
+
+      if (!/[a-z]/.test(categoryName) || !/[A-Z]/.test(categoryName)) {
+        document.getElementById('categoryError').innerText = 'Category name must contain both small and capital letters';
+        return false;
+      }
+
+      var existingCategories = ['Category1', 'Category2', 'Category3'];
+      if (existingCategories.includes(categoryName)) {
+        document.getElementById('categoryError').innerText = 'Category already exists';
+        return false;
+      }
+
+      document.getElementById('categoryError').innerText = '';
+      return true;
+    }
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

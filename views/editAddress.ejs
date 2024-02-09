@@ -1,0 +1,138 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Address Form</title>
+  <meta name="viewport" content="initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body class="container">
+    <form action="/addresseditpost/<%= oldaddress._id %>" method="post">
+  <h1> Edit   Address</h1>
+  <div class="row">
+    <form class="col s12">
+      
+      <div class="row">
+        <div class="input-field col s12 m12 l6">
+          <input id="firstname" type="text" required class="validate" pattern="^\S.{1,23}\S$" title="Please enter a first Name between 3-25 characters" length="25" name="firstname" value="<%= oldaddress.firstname %>">
+          <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s12 m12 l6">
+          <input id=" lastname" type="text" required class="validate" pattern="^\S.{1,23}\S$" title="Please enter a last Name between 3-25 characters" length="25" name=" lastname" value="<%= oldaddress.lastname  %>">
+          <label for="last_name">Last Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m12 l6">
+          <input id="address" type="text" required class="validate" pattern="^\S.+" title="Please enter a valid address" name="address"value="<%= oldaddress.address  %>">
+          <label for="address">Address</label>
+        </div>
+        <div class="input-field col s12 m12 l6">
+          <input id="city" type="text" required class="validate" title="Please enter a valid City/Town" pattern="^\S.+" name="city" value="<%= oldaddress.city  %>">
+          <label for="city">City/Town</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 m12 l6">
+          <label for="state">State</label>
+          <select id="state" class="browser-default" required title="Please select a state" name="state" >
+            <option value="" disabled selected>Select a state</option>
+            <option value="ar-us"> kerala</option>
+            <option value="ny-us">Tamil Nadu </option>
+            <option value="ca-us">Karnataka</option>
+            <option value="ar-us"> Rajasthan</option>
+            <option value="ar-us">Gujarat </option>
+          </select>
+        </div>
+        <div class="input-field col s12 m12 l6">
+          <input id="pincode" type="text" required title="Please enter a valid post code
+(e.g., 12345)" pattern="^\d{5}(-\d{4})?$" class="validate" name="pincode" >
+          <label for="zip-code">Pincode</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m12 l6">
+          <i class="material-icons prefix">email</i>
+          <input id="email" type="email" required class="validate" title="Please enter a valid email" name="email"  value="<%= oldaddress.email %>"> 
+          <label for="email">Email</label>
+        </div>
+        <div class="input-field col s12 m12 l6">
+          <i class="material-icons prefix">contact_phone</i>
+          <input id="phone" type="tel" required title="Please enter a valid phone number (e.g., (123) 456-7890)" pattern="^[0-9]?\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$" class="validate"name="phone" value="<%= oldaddress.phone  %>"> >
+          <label for="phone">Phone Number</label>
+        </div>
+      </div>
+      <button class="waves-effect waves-light btn right" type="submit">Submit</button>
+    </form>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+ 
+  <script>
+     // Attach a submit event listener to the form
+     document.getElementById('addressForm').addEventListener('submit', function(event) {
+       // Prevent the default form submission
+       event.preventDefault();
+ 
+       // Perform validation checks
+       var errors = [];
+ 
+       // Null validation
+       ['firstname', 'lastname', 'address', 'city', 'state', 'pincode', 'email', 'phone'].forEach(function(fieldId) {
+         var fieldValue = document.getElementById(fieldId).value;
+         if (fieldValue === '') {
+           errors.push(fieldId + ' cannot be empty');
+         }
+       });
+ 
+       // Email validation
+       var email = document.getElementById('email').value;
+       var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+       if (!emailRegex.test(email)) {
+         errors.push('Please enter a valid email');
+       }
+ 
+       // Pincode validation
+       var pincode = document.getElementById('pincode').value;
+       if (pincode.length < 4 || isNaN(pincode)) {
+         errors.push('Please enter a valid pincode');
+       }
+ 
+       // Name validation
+       var firstname = document.getElementById('firstname').value;
+       var lastname = document.getElementById('lastname').value;
+       var nameRegex = /^[a-zA-Z]+$/;
+       if (!nameRegex.test(firstname) || !nameRegex.test(lastname) || firstname.length < 3 || firstname.length > 25 || lastname.length < 3 || lastname.length > 25) {
+         errors.push('Please enter a valid first name and last name');
+       }
+ 
+       // Address validation
+       var address = document.getElementById('address').value;
+       if (address === '') {
+         errors.push('Address cannot be empty');
+       }
+ 
+       // Phone validation
+       var phone = document.getElementById('phone').value;
+       var phoneRegex = /^[0-9]?\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+       if (!phoneRegex.test(phone)) {
+         errors.push('Please enter a valid phone number');
+       }
+ 
+       // If there are no errors, submit the form
+       if (errors.length === 0) {
+         this.submit();
+       } else {
+         // Display errors
+         errors.forEach(function(errorMessage) {
+           console.log(errorMessage);
+           // You can also display these messages in a modal or alert box
+         });
+       }
+     });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,408 @@
+<!-- /*
+* Bootstrap 5
+* Template Name: Furni
+* Template Author: Untree.co
+* Template URI: https://untree.co/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/ -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Untree.co">
+  <link rel="shortcut icon" href="favicon.png">
+
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap4" />
+
+
+<!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-xrR5NqgeqD3Pbe5VZjOxwzrqMCr2w8P1b8r9z6p+8RbGpK3b5k9Rv9Im9Z9R/2c+" crossorigin="anonymous">
+
+
+
+		<!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+		<link href="css/tiny-slider.css" rel="stylesheet">
+		<link href="/css/style.css" rel="stylesheet">
+		<title>Furni Free Bootstrap 5 Template for Furniture and Interior Design Websites by Untree.co </title>
+		<style>
+			.navbar {
+			  padding: 0.5rem 1rem; /* Adjust padding to reduce height */
+			  height: 70px; /* Adjust the height as needed */
+			} 
+		.navbar-nav .nav-item .nav-link {
+		  text-decoration: none;
+		  color: #fdfbfb;
+		  font-size: 15px; /* Adjust font size */
+		  padding: 0.8rem 1rem; /* Adjust padding */
+		  position: relative;
+		}
+		
+		.navbar-nav .nav-item .nav-link::before,
+		.navbar-nav .nav-item .nav-link::after {
+		  content: "";
+		  position: absolute;
+		  width: 100%;
+		  height: 2px;
+		  background: #1f1e1e;
+		  transform: scaleX(0);
+		  transition: all 0.6s ease;
+		}
+		
+		.navbar-nav .nav-item .nav-link::before {
+		  top: 0;
+		  left: 0;
+		  transform-origin: left;
+		}
+		
+		.navbar-nav .nav-item .nav-link::after {
+		  bottom: 0;
+		  left: 0;
+		  transform-origin: right;
+		}
+		
+		.navbar-nav .nav-item .nav-link:hover::before,
+		.navbar-nav .nav-item .nav-link:hover::after {
+		  transform: scaleX(1);
+		}
+		
+		/* Style for wishlist and cart buttons */
+		.navbar-nav .nav-item .btn {
+		  
+		  color: #131313 !important;
+		}
+		 /* Adjusting banner height */
+		 .navbar-brand img {
+			  max-height: 50px; /* Adjust the max-height as needed */
+			}
+			
+			.navbar-nav .nav-item .btn.wishlist-active,
+			.navbar-nav .nav-item .btn.cart-active {
+			  color: #ffffff !important;
+			  background-color: #080808 !important; /* Change button background color to black */
+			}
+			.button1:hover {
+		  box-shadow: 0px 0px 5px #fe21a2,
+					   0px 0px 30px #fe21a2,
+					   0px 0px 90px #fe21a2;
+		}
+		.button2:hover {
+		  box-shadow: 0px 0px 5px #29f306,
+					   0px 0px 30px #18d703,
+					   0px 0px 90px #08fb51;
+		}
+		.nav3{
+		  background-image: linear-gradient(90deg, #191472 0%, #0b0ba4 35%, #006eff 100%);
+		}
+		</style>
+	</head>
+
+	<body>
+
+		<!-- Start Header/Navigation -->
+		<nav class="navbar navbar-expand-lg navbar-dark  p-3 nav3">
+			<a class="navbar-brand" href="/project/public/image/banner1.webp">
+			  <img src="/image/phonemate-high-resolution-logo-removebg-preview.png" class="img-fluid" style="width:150px;height:70px;" alt="Logo">
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+			  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			  <span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+			  <ul class="navbar-nav" style="gap: 2rem;">
+				<li class="nav-item active">
+				  <a class="nav-link" href="/Home">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<div>
+				  <!-- <label for="category">Category</label> -->
+				  <select  class="form-control" aria-label="Default select example" onchange="showCategoryDetails()" >
+					<option class=""  value="">category</option>
+		
+					<% Categorie.forEach(category => { %>
+					  <option value="<%= category.BrandName %>">
+						  <%= category.BrandName %> 
+					  </option>
+				  <% }); %>
+				  </select>
+		
+		
+				  
+			  </div>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="#">Contact</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="/ProductList">Shop</a>
+				</li>
+			  </ul>
+			  <div class="ms-md-5 mt-2 mt-md-0">
+				<a href="/Profile" type="button" class="btn btn-outline-dark fw-500 rounded button1">
+				  <i class="fas fa-user me-lg-2"></i> 
+				</a>
+				<a href="/wishlist" type="button" class="btn btn-outline-dark fw-500 rounded button1">
+				  <i class="fas fa-heart me-lg-2"></i>
+				</a>
+				<a href="/getCart" type="button" class="btn btn-outline-dark fw-500 rounded button1">
+				  <i class="fas fa-shopping-cart me-lg-2"></i>
+				</a>
+				
+				<a id="logout-button" href="/" type="button" class="btn btn-outline-dark fw-600 rounded button2">
+				  <i class="bi bi-box-arrow-right">Logout</i>
+				</a>
+			  </div>
+			</div>
+		  </nav>
+		<!-- End Header/Navigation -->
+
+		<!-- Start Hero Section -->
+			<div class="hero">
+				<div class="container">
+					<div class="row justify-content-between">
+						<div class="col-lg-5 h-60">
+							<div class="intro-excerpt">
+								<h1>Checkout</h1>
+							</div>
+						</div>
+						<div class="col-lg-7">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		<!-- End Hero Section -->
+
+		<div class="untree_co-section">
+		    <div class="container">
+		      
+		      <div class="row">
+		        <div class="col-md-6 mb-5 mb-md-0">
+					<h2 class="h3 mb-3 text-black">Billing Details</h2>
+					<div class="p-3 p-lg-5 border bg-white">
+					 <!-- billing checkout -->
+
+					 <div class="payment__info">
+						<div class="payment__cc">
+						  <div class="payment__title personal-info">
+							<i class="icon icon-user"></i>Personal Information
+						  </div>
+						  <form action="/Checkoutpost" method="POST">
+							<% if (address && Array.isArray(address) && address.length> 0) { %>
+							  <div class="payment__shipping">
+								<% address.forEach((product, index)=> { %>
+							   
+								  <div class="details__user">
+									<div class="user__name">
+									  <%= product.firstname %>
+										<%= product.lastname %>
+									</div>
+									<div class="user__address">Shipping Address: <%= product.address %>, <%= product.city %>
+									</div>
+				  
+									<!-- Radio button for shipping option -->
+									<div class="shipping__option">
+										<input type="radio" id="shippingOption<%= product._id %>" name="shippingOption" value="<%= product._id %>" <%= index === 0 ? 'checked' : '' %>>
+										<label for="shippingOption<%= product._id %>">Select this shipping option</label>
+									</div>
+									
+				  
+								  </div>
+				  
+								  <% }); %>
+				  
+							  </div>
+				  
+							  <div class="add-address-button">
+								<a href="/Orderaddressadd" class="btn action__add-address">Add Address</a>
+							  </div>
+						</div>
+						<% } else { %>
+						  <p>No shipping information available.</p>
+						  <% } %>
+					  </div>
+	
+  
+					</div>
+				  </div>
+
+
+		        <div class="col-md-6">
+
+		          <div class="row mb-5">
+		            <div class="col-md-12">
+		              <h2 class="h3 mb-3 text-black">Coupon Code</h2>
+		              <div class="p-3 p-lg-5 border bg-white">
+
+		                <label for="c_code" class="text-black mb-3">Enter your coupon code if you have one</label>
+		                <div class="input-group w-75 couponcode-wrap">
+		                  <input type="text" class="form-control me-2" id="c_code" placeholder="Coupon Code" aria-label="Coupon Code" aria-describedby="button-addon2">
+		                  <div class="input-group-append">
+		                    <button class="btn btn-black btn-sm" type="button" id="button-addon2">Apply</button>
+		                  </div>
+		                </div>
+
+		              </div>
+		            </div>
+		          </div>
+
+		          <div class="row mb-5">
+		            <div class="col-md-12">
+		              <h2 class="h3 mb-3 text-black">Your Order</h2>
+		              <div class="p-3 p-lg-5 border bg-white">
+                   
+		                <table class="table site-block-order-table mb-5">
+		                  <thead>
+		                    <th>Product</th>
+		                    <th>Total</th>
+		                  </thead>
+                      <% checkout.forEach((product, index)=> { %>
+		                  <tbody>
+                      
+		                    <tr>
+		                      <td> <%= product.productname %><strong class="mx-2">x</strong> <%= product.quantity%></td>
+		                      <td>₹<%= product.price %></td>
+		                    </tr>
+							
+		                    <!-- <tr>
+		                      <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
+		                      <td class="text-black font-weight-bold"><strong>$350.00</strong></td>
+		                    </tr> -->
+                    
+		                  </tbody>
+                      <% }); %>
+		                </table>
+                  
+		                <div class="border p-3 mb-3">
+		                <!-- <h3 class="h6 mb-0"><a class="d-block" data-bs-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank">Cash on Delivery</a></h3>
+						 -->
+						 <div class="form-group">
+							<label for="paymentMethod">Payment Method:</label>
+							<select class="form-control" id="paymentMethod" name="paymentMethod" required>
+							   <option value="Cash on Delivery">Cash on Delivery</option>
+							   <option value="credit-card">Credit Card</option>
+							</select>
+						 </div>
+		                <!-- <div class="border p-3 mb-3">
+		                  <h3 class="h6 mb-0"><a class="d-block" data-bs-toggle="collapse" href="#collapsecheque" role="button" aria-expanded="false" aria-controls="collapsecheque">Cheque Payment</a></h3>
+
+		                  <div class="collapse" id="collapsecheque">
+		                    <div class="py-2">
+		                      <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+		                    </div>
+		                  </div>
+		                </div>
+
+		                <div class="border p-3 mb-5">
+		                  <h3 class="h6 mb-0"><a class="d-block" data-bs-toggle="collapse" href="#collapsepaypal" role="button" aria-expanded="false" aria-controls="collapsepaypal">Paypal</a></h3>
+
+		                  <div class="collapse" id="collapsepaypal">
+		                    <div class="py-2">
+		                      <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+		                    </div>
+		                  </div>
+		                </div>	 -->
+
+		                <div class="form-group">
+		                  <button class="btn btn-black btn-lg py-3 btn-block" onclick="window.location='thankyou.html'">Place Order</button>
+		                </div>
+                  </form>
+		              </div>
+		            </div>
+		          </div>
+				  
+		        </div>
+		      </div>
+		      <!-- </form> -->
+		    </div>
+			
+		  </div>
+
+		  
+
+		<!-- Start Footer Section -->
+		<footer class="footer-section">
+			<div class="container relative">
+
+				
+				
+
+				<div class="row g-5 mb-5">
+					<div class="col-lg-4">
+						<div class="mb-4 footer-logo-wrap"><a href="#" class="footer-logo"> <span>ℍ𝕆ℝ𝕀ℤ𝕆ℕ 𝕄𝕆𝔹𝕀𝕃𝔼𝕊</span></a></div>
+						<p class="mb-4">Discover the pinnacle of mobile technology at HorizonMobiles.  Find your perfect smartphone among sleek designs and powerful features. Redefine your mobile experience with us. Welcome to a new era in communication!</p>
+
+						<ul class="list-unstyled custom-social">
+							<li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
+							<li><a href="#"><span class="fa fa-brands fa-twitter"></span></a></li>
+							<li><a href="#"><span class="fa fa-brands fa-instagram"></span></a></li>
+							<li><a href="#"><span class="fa fa-brands fa-linkedin"></span></a></li>
+						</ul>
+					</div>
+
+					<div class="col-lg-8">
+						<div class="row links-wrap">
+							<div class="col-6 col-sm-6 col-md-3">
+								<ul class="list-unstyled">
+									<li><a href="#">About us</a></li>
+									<li><a href="#">Services</a></li>
+									<li><a href="#">Blog</a></li>
+									<li><a href="#">Contact us</a></li>
+								</ul>
+							</div>
+
+							<div class="col-6 col-sm-6 col-md-3">
+								<ul class="list-unstyled">
+									<li><a href="#">Support</a></li>
+									<li><a href="#">Knowledge base</a></li>
+									<li><a href="#">Live chat</a></li>
+								</ul>
+							</div>
+
+							<div class="col-6 col-sm-6 col-md-3">
+								<ul class="list-unstyled">
+									<li><a href="#">Jobs</a></li>
+									<li><a href="#">Our team</a></li>
+									<li><a href="#">Leadership</a></li>
+									<li><a href="#">Privacy Policy</a></li>
+								</ul>
+							</div>
+
+							
+						</div>
+					</div>
+
+				</div>
+
+				<div class="border-top copyright">
+					<div class="row pt-4">
+						<div class="col-lg-6">
+							<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed  by <a href="https://untree.co">𝐀𝐍𝐒𝐈𝐅𝐀𝐋𝐈</a> Distributed By <a hreff="https://themewagon.com">ℍ𝕆ℝ𝕀ℤ𝕆ℕ 𝕄𝕆𝔹𝕀𝕃𝔼𝕊</a>  <!-- License information: https://untree.co/license/ -->
+            </p>
+						</div>
+
+						<div class="col-lg-6 text-center text-lg-end">
+							<ul class="list-unstyled d-inline-flex ms-auto">
+								<li class="me-4"><a href="#">Terms &amp; Conditions</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</footer>
+		<!-- End Footer Section -->	
+
+
+		<script src="js/bootstrap.bundle.min.js"></script>
+		<script src="js/tiny-slider.js"></script>
+		<script src="js/custom.js"></script>
+	</body>
+
+</html>

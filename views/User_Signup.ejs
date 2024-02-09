@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup Form</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style media="screen">
+    /* Your existing CSS styles */
+    body {
+      background-color: #080710;
+      margin: 0;
+      padding: 0;
+    }
+
+    .background {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .background img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .form-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      width: 400px;
+      background-color: rgba(255, 255, 255, 0.13);
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+      padding: 50px 35px;
+    }
+
+    .form-container * {
+      font-family: 'Poppins', sans-serif;
+      color: #0c0c0c;
+      letter-spacing: 0.5px;
+      outline: none;
+      border: none;
+    }
+
+    .form-container h3 {
+      font-size: 32px;
+      font-weight: 500;
+      line-height: 42px;
+      text-align: center;
+    }
+
+    .form-container label {
+      display: block;
+      margin-top: 30px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .form-container input {
+      display: block;
+      height: 50px;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.07);
+      border-radius: 3px;
+      padding: 0 10px;
+      margin-top: 8px;
+      font-size: 14px;
+      font-weight: 300;
+      color: #fff;
+      /* Added color for input text */
+    }
+
+    .form-container ::placeholder {
+      color: #e9e1e1;
+    }
+
+    .form-container button {
+      margin-top: 50px;
+      width: 100%;
+      background-color: #ffffff;
+      color: #080710;
+      padding: 15px 0;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="background">
+    <img src="/image/futuristic-background-design_23-2148503793.avif" alt="login form" />
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="form-container p-4 mt-md-5">
+            <h3 class="text-center">Sign up</h3>
+            <form action="/User_Signup" method="POST" onsubmit="return validateForm()">
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                <div style="color: red;" id="usernameError" class="error-message"></div>
+              </div>
+
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                <div style="color: red;" id="emailError" class="error-message"></div>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                <div style="color: red;" id="passwordError" class="error-message"></div>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Conform Password</label>
+                <input type="password" class="form-control" id="conformpassword" name="conformpassword"
+                  placeholder="Password">
+                <div style="color: red;" id="passwordError" class="error-message"></div>
+              </div>
+              <button type="submit" class="btn btn-success d-block w-100">Send otp</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+    function validateForm() {
+      var username = document.getElementById('username').value.trim();
+      var email = document.getElementById('email').value.trim();
+      var password = document.getElementById('password').value;
+      var confirmPassword = document.getElementById('conformpassword').value;
+  
+      // Reset error messages
+      document.getElementById('usernameError').innerText = '';
+      document.getElementById('emailError').innerText = '';
+      document.getElementById('passwordError').innerText = '';
+  
+      // Check username length and no null or white space
+      if (username.length < 2 || username.includes(' ')) {
+        document.getElementById('usernameError').innerText = 'Username must be at least 2 characters long and cannot contain spaces.';
+        return false;
+      }
+  
+      // Check email with regex
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        document.getElementById('emailError').innerText = 'Invalid email address.';
+        return false;
+      }
+  
+      // Check password length
+      if (password.length < 4) {
+        document.getElementById('passwordError').innerText = 'Password must be at least 4 characters long.';
+        return false;
+      }
+  
+      // Check if password and confirm password match
+      if (password !== confirmPassword) {
+        document.getElementById('passwordError').innerText = 'Passwords do not match.';
+        return false;
+      }
+      return true; // Form is valid, continue with submission
+    }
+  </script>
+
+</body>
+
+</html>

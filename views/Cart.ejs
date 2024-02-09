@@ -1,0 +1,441 @@
+<!-- /*
+* Bootstrap 5
+* Template Name: Furni
+* Template Author: Untree.co
+* Template URI: https://untree.co/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/ -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Untree.co">
+  <link rel="shortcut icon" href="favicon.png">
+
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap4" />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-xrR5NqgeqD3Pbe5VZjOxwzrqMCr2w8P1b8r9z6p+8RbGpK3b5k9Rv9Im9Z9R/2c+" crossorigin="anonymous">
+
+
+
+		<!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+		<link href="css/tiny-slider.css" rel="stylesheet">
+		<link href="/css/style.css" rel="stylesheet">
+		<title>Furni Free Bootstrap 5 Template for Furniture and Interior Design Websites by Untree.co </title>
+	</head>
+
+	<body>
+
+		<!-- Start Header/Navigation -->
+		<style>
+      .navbar {
+        padding: 0.5rem 1rem; /* Adjust padding to reduce height */
+        height: 70px; /* Adjust the height as needed */
+      } 
+  .navbar-nav .nav-item .nav-link {
+    text-decoration: none;
+    color: #fdfbfb;
+    font-size: 15px; /* Adjust font size */
+    padding: 0.8rem 1rem; /* Adjust padding */
+    position: relative;
+  }
+  
+  .navbar-nav .nav-item .nav-link::before,
+  .navbar-nav .nav-item .nav-link::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: #1f1e1e;
+    transform: scaleX(0);
+    transition: all 0.6s ease;
+  }
+  
+  .navbar-nav .nav-item .nav-link::before {
+    top: 0;
+    left: 0;
+    transform-origin: left;
+  }
+  
+  .navbar-nav .nav-item .nav-link::after {
+    bottom: 0;
+    left: 0;
+    transform-origin: right;
+  }
+  
+  .navbar-nav .nav-item .nav-link:hover::before,
+  .navbar-nav .nav-item .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+  
+  /* Style for wishlist and cart buttons */
+  .navbar-nav .nav-item .btn {
+    
+    color: #131313 !important;
+  }
+   /* Adjusting banner height */
+   .navbar-brand img {
+        max-height: 50px; /* Adjust the max-height as needed */
+      }
+      
+      .navbar-nav .nav-item .btn.wishlist-active,
+      .navbar-nav .nav-item .btn.cart-active {
+        color: #ffffff !important;
+        background-color: #080808 !important; /* Change button background color to black */
+      }
+      .button1:hover {
+    box-shadow: 0px 0px 5px #fe21a2,
+                 0px 0px 30px #fe21a2,
+                 0px 0px 90px #fe21a2;
+  }
+  .button2:hover {
+    box-shadow: 0px 0px 5px #29f306,
+                 0px 0px 30px #18d703,
+                 0px 0px 90px #08fb51;
+  }
+  .nav3{
+    background-image: linear-gradient(90deg, #191472 0%, #0b0ba4 35%, #006eff 100%);
+  }
+  </style>
+  </head>
+  
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark  p-3 nav3">
+      <a class="navbar-brand" href="/project/public/image/banner1.webp">
+        <img src="/image/phonemate-high-resolution-logo-removebg-preview.png" class="img-fluid" style="width:150px;height:70px;" alt="Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+        <ul class="navbar-nav" style="gap: 2rem;">
+          <li class="nav-item active">
+            <a class="nav-link" href="/Home">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <div>
+            <!-- <label for="category">Category</label> -->
+            <select  class="form-control" aria-label="Default select example" onchange="showCategoryDetails()" >
+              <option class=""  value="">category</option>
+  
+              <% Categorie.forEach(category => { %>
+                <option value="<%= category.BrandName %>">
+                    <%= category.BrandName %> 
+                </option>
+            <% }); %>
+            </select>
+  
+  
+            
+        </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/ProductList">Shop</a>
+          </li>
+        </ul>
+        <div class="ms-md-5 mt-2 mt-md-0">
+          <a href="/Profile" type="button" class="btn btn-outline-dark fw-500 rounded button1">
+            <i class="fas fa-user me-lg-2"></i> 
+          </a>
+          <a href="/wishlist" type="button" class="btn btn-outline-dark fw-500 rounded button1">
+            <i class="fas fa-heart me-lg-2"></i>
+          </a>
+          <a href="/getCart" type="button" class="btn btn-outline-dark fw-500 rounded button1">
+            <i class="fas fa-shopping-cart me-lg-2"></i>
+          </a>
+          
+          <a id="logout-button" href="/" type="button" class="btn btn-outline-dark fw-600 rounded button2">
+            <i class="bi bi-box-arrow-right">Logout</i>
+          </a>
+        </div>
+      </div>
+    </nav>
+		<!-- End Header/Navigation -->
+
+		<!-- Start Hero Section -->
+			<div class="hero">
+				<div class="container">
+          <br>
+					<div class="row justify-content-center align-items-center">
+						<div class="col-lg-5">
+							<div class="intro-excerpt">
+								<h1>Cart</h1>
+							</div>
+						</div>
+					
+							
+						</div>
+					</div>
+				</div>
+		
+		<!-- End Hero Section -->
+
+		
+
+		<div class="untree_co-section before-footer-section">
+            <div class="container">
+              <div class="row mb-5">
+                <form class="col-md-12" method="post">
+                  <div class="site-blocks-table">
+                    <table class="table">
+                      <% if (cartfind.length > 0) { %>
+                      <thead>
+                        <tr>
+                          <th class="product-thumbnail">Imageee</th>
+                          <th class="product-name">Product</th>
+                          <th class="product-price">Price</th>
+                          <th class="product-quantity">Quantity</th>
+                          <th class="product-total">Total</th>
+                          <th class="product-remove">Remove</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% cartfind.forEach((product, index) => { %>
+                        <tr>
+                          <td class="product-thumbnail">
+                            <img src="<%= product.image[0] %>" alt="Image" class="img-fluid">
+                          </td>
+                          <td class="product-name">
+                            <h2 class="h5 text-black"><%= product.productname %></h2>
+                          </td>
+                          <td>₹<%= product.price %></td>
+                          <td>
+                            <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
+                              <div class="input-group-prepend">
+                                  <button class="btn btn-outline-black decrease" type="button" onclick="updateQuantity(1, 'decrease')">−</button>
+                              </div>
+                              <input type="text" class="form-control text-center quantity-amount" value="<%= product.quantity%>" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" id="quantity1">
+                              
+                              <div class="input-group-append">
+                                  <button class="btn btn-outline-black increase" type="button" onclick="updateQuantity(1, 'increase')">+</button>
+                              </div>
+                          </div>
+        
+                          </td>
+                          <td>₹<%= product.price * product.quantity %></td>
+                          <td><a href="/removecart/<%=product._id %>" class="btn btn-black btn-sm">X</a></td>
+                        </tr>
+        
+                        <% }); %>
+                      </tbody>
+                    </table>
+                  </div>
+                </form>
+              </div>
+        
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="row mb-5">
+                   
+                    <div class="col-md-6">
+                      <a href="/Home" class="btn btn-outline-black btn-sm btn-block">Continue Shopping</a>
+                    </div>
+                  </div>
+                  
+                </div>
+                <!-- btghghjbgdbsdtgrevryrtggggggggggggggggg -->
+                <div class="col-md-6 pl-5">
+                  <div class="row justify-content-end">
+                    <div class="col-md-7" style="background-color: rgb(248, 232, 231);">
+                      <div class="row">
+                        <div class="col-md-12 text-right border-bottom mb-5">
+                          <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <div class="col-md-6">
+                          <span class="text-black">Subtotal</span>
+                        </div>
+                        <div class="col-md-6 text-right">
+                          <strong class="text-black">₹<%= overallTotalSum %></strong>
+                        </div>
+                      </div>
+                      <div class="row mb-5">
+                        <div class="col-md-6">
+                          <span class="text-black">Total</span>
+                        </div>
+                        <div class="col-md-6 text-right">
+                          <strong class="text-black">₹<%= overallTotalSum %></strong>
+                        </div>
+                      </div>
+                    
+                      <div class="row">
+                        <div class="col-md-12">
+                          <a href="/CheckoutPage"><button class="btn btn-black btn-lg py-3 btn-block" onclick="window.location='checkout.html'">Proceed To Checkout</button></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% } else { %>
+            <div class="alert alert-info" role="alert">
+                Your cart is empty. Start shopping now!
+            </div>
+        <% } %>
+		
+
+		<!-- Start Footer Section -->
+		<footer class="footer-section">
+			<div class="container relative">
+
+				
+
+				
+
+				<div class="row g-5 mb-5">
+					<div class="col-lg-4">
+						<div class="mb-4 footer-logo-wrap"><a href="#" class="footer-logo"> <span>ℍ𝕆ℝ𝕀ℤ𝕆ℕ 𝕄𝕆𝔹𝕀𝕃𝔼𝕊</span></a></div>
+						<p class="mb-4">Discover the pinnacle of mobile technology at HorizonMobiles.  Find your perfect smartphone among sleek designs and powerful features. Redefine your mobile experience with us. Welcome to a new era in communication!</p>
+
+						<ul class="list-unstyled custom-social">
+							<li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
+							<li><a href="#"><span class="fa fa-brands fa-twitter"></span></a></li>
+							<li><a href="#"><span class="fa fa-brands fa-instagram"></span></a></li>
+							<li><a href="#"><span class="fa fa-brands fa-linkedin"></span></a></li>
+						</ul>
+					</div>
+
+					<div class="col-lg-8">
+						<div class="row links-wrap">
+							<div class="col-6 col-sm-6 col-md-3">
+								<ul class="list-unstyled">
+									<li><a href="#">About us</a></li>
+									<li><a href="#">Services</a></li>
+									<li><a href="#">Blog</a></li>
+									<li><a href="#">Contact us</a></li>
+								</ul>
+							</div>
+
+							<div class="col-6 col-sm-6 col-md-3">
+								<ul class="list-unstyled">
+									<li><a href="#">Support</a></li>
+									<li><a href="#">Knowledge base</a></li>
+									<li><a href="#">Live chat</a></li>
+								</ul>
+							</div>
+
+							<div class="col-6 col-sm-6 col-md-3">
+								<ul class="list-unstyled">
+									<li><a href="#">Jobs</a></li>
+									<li><a href="#">Our team</a></li>
+									<li><a href="#">Leadership</a></li>
+									<li><a href="#">Privacy Policy</a></li>
+								</ul>
+							</div>
+
+						
+						</div>
+					</div>
+
+				</div>
+
+				<div class="border-top copyright">
+					<div class="row pt-4">
+						<div class="col-lg-6">
+							<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed  by <a href="https://untree.co">𝐀𝐍𝐒𝐈𝐅𝐀𝐋𝐈</a> Distributed By <a hreff="https://themewagon.com">ℍ𝕆ℝ𝕀ℤ𝕆ℕ 𝕄𝕆𝔹𝕀𝕃𝔼𝕊</a>  <!-- License information: https://untree.co/license/ -->
+            </p>
+						</div>
+
+						<div class="col-lg-6 text-center text-lg-end">
+							<ul class="list-unstyled d-inline-flex ms-auto">
+								<li class="me-4"><a href="#">Terms &amp; Conditions</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</footer>
+		<!-- End Footer Section -->	
+
+
+		<script src="js/bootstrap.bundle.min.js"></script>
+		<script src="js/tiny-slider.js"></script>
+		<script src="js/custom.js"></script>
+	
+
+    <script>
+         function updateQuantity(index, action) {
+        // Make sure the quantity cannot go below 1
+        const currentQuantity = parseInt(document.getElementById(`quantity${index}`).value);
+        const newQuantity = action === 'decrease' ? Math.max(1, currentQuantity - 1) : currentQuantity + 1;
+
+        // Make an AJAX request to the server to update quantity
+        fetch('/updateQuantity', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ index, action }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Update the quantity and total in the DOM
+                    const quantityElement = document.getElementById(`quantity${index}`);
+                    const totalElement = document.getElementById(`total${index}`);
+
+                    quantityElement.value = newQuantity;
+                    // Update the totalElement if it exists in your HTML
+                    if (totalElement) {
+                        totalElement.innerText = `₹${data.updatedCartItem.itemTotal}`;
+                    }
+                } else {
+                    console.error(data.error);
+                }
+            })
+            .catch(error => console.error(error));
+    }
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+<script>
+  ///////////////logout/////////////////////////
+  document.addEventListener("DOMContentLoaded", function () {
+    const logoutButton = document.getElementById("logout-button");
+
+    if (logoutButton) {
+      logoutButton.addEventListener("click", function (e) {
+        e.preventDefault(); // Prevent the default link behavior
+
+        // Use SweetAlert2 for confirmation
+        Swal.fire({
+          title: "Are you sure?",
+          text: "Do you really want to logout?",
+          icon: "question",
+          showCancelButton: true,
+          confirmButtonText: "Yes, logout",
+          cancelButtonText: "No, cancel"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // If the user confirms, redirect to the logout page
+            window.location.href = "/";
+          }
+        });
+      });
+    }
+  });
+</script>  
+</body>
+
+</html>

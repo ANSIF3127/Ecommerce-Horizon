@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-d0mQEGdAheS89w3YlM1cMq5OY1Q0xU0X6uQqoJO5B7eAWOfZOR5p7GRW5B6A3j5/" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <style>
+        .gradient-custom {
+            background: #6a11cb;
+            background: -webkit-linear-gradient(to right, rgb(79, 211, 232), rgb(222, 226, 232));
+            background: linear-gradient(to right, rgb(17, 160, 203), rgb(218, 223, 231))
+        }
+    </style>
+    <section class="h-100 gradient-custom">
+        <div class="container py-5">
+            <div class="row d-flex justify-content-center my-4">
+                <% if (cartfind.length > 0) { %>
+                    
+                        <div class="col-md-8">
+                            <div class="card mb-4">
+                              <div class="card-header py-3">
+                                <h5 class="mb-0">Your Shopping Cart</h5>
+                            </div>
+                              <% cartfind.forEach((product, index) => { %>
+                                
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                                            <div class="bg-image hover-overlay hover-zoom ripple rounded"
+                                                data-mdb-ripple-color="light">
+                                                <img src="<%= product.image[0] %>" alt="<%= product.name %>" class="w-100" />
+                                                <a href="#!">
+                                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                                            <p><strong><%= product.productname %></strong></p>
+                                            <p>₹<%= product.price %></p>
+                                            <p>   </p>
+                                            <a href="/removecart/<%=product._id %>">
+                                                <button type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </a>
+                                            <button type="button" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip" title="Move to the wish list">
+                                                <i class="fas fa-heart"></i>
+                                            </button>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                            <div class= "quantity-controls d-flex mb-4" style="max-width: 300px">
+                                                <div class="quantity-controls">
+                                                    <button class="quantity-btn" onclick="updateQuantity('<%= index %>', 'decrease')">-</button>
+                                                    <p class="cartItemQuantity p-1 text-center"name="quantity" id="quantity<%= index %>"><%= product.quantity%></p>
+                                                    <button class="quantity-btn" onclick="updateQuantity('<%= index %>', 'increase')">+</button>
+                                                  </div>
+                                            </div>
+                                           
+                                            <!-- Add the following line to display the total price for the product -->
+                                            <p class="text-start text-md-center">
+                                                <strong>Total: ₹<%= product.price * product.quantity %></strong>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-4" />
+                                <% }); %>
+                            </div>
+                        </div>
+                   
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-header py-3">
+                                <h5 class="mb-0">Summary</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                 
+                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                        Shipping
+                                        <span>Gratis</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                                        <div>
+                                            <strong>Total amount</strong>
+                                        </div>
+                                        <span><strong>₹<%= overallTotalSum %></strong></span>
+                                    </li>
+                                </ul>
+                                <a href="/CheckoutPage">
+                                    <button type="button" class="btn btn-primary btn-lg btn-block">
+                                        Go to checkout
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <div class="alert alert-info" role="alert">
+                        Your cart is empty. Start shopping now!
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </section>
+    <script>
+        function updateQuantity(index, action) {
+          // Make sure the quantity cannot go below 1
+          const currentQuantity = parseInt(document.getElementById(`quantity${index}`).innerText);
+          const newQuantity = action === 'decrease' ? Math.max(1, currentQuantity - 1) : currentQuantity + 1;
+        
+          // Make an AJAX request to the server to update quantity
+          fetch('/updateQuantity', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ index, action }),
+        })
+        .then(response => response.json())
+        .then(data => {
+              if (data.success) {
+                // Update the quantity and total in the DOM
+                const quantityElement = document.getElementById(`quantity${index}`);
+                const totalElement = document.getElementById(`total${index}`);
+        
+                quantityElement.innerText = newQuantity;
+                totalElement.innerText = `₹${data.updatedCartItem.itemTotal}`;
+              } else {
+                console.error(data.error);
+              }
+            })
+            .catch(error => console.error(error));
+        }
+        </script>
+</body>
+
+</html>

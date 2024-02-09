@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Product</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Additional CSS can be added here */
+  </style>
+</head>
+<body>
+
+  <div class="container mt-4">
+    <h2>Add Product</h2>
+    <form method="post" action="/addProduct" enctype="multipart/form-data" id="addProductForm" >
+      <div class="form-group">
+        <label for="productName">Product Name</label>
+        <input type="text" class="form-control" id="productName" placeholder="Enter product name" name="ProductName">
+        <div id="productNameError" class="text-danger validation-msg"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="price">Price</label>
+          <input type="number" class="form-control" id="price" placeholder="Enter price" name="Price">
+          <div id="priceError" class="text-danger validation-msg"></div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="stock">Stock</label>
+          <input type="number" class="form-control" id="stock" placeholder="Enter stock quantity" name="Stock">
+          <div id="stockError" class="text-danger validation-msg"></div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="Rating">Rating</label>
+          <input type="number" class="form-control" id="Rating" placeholder="Enter Rating quantity" name="Rating">
+          <div id="ratingError" class="text-danger validation-msg"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select class="form-control" id="category" name="Category">
+          <% Category.forEach(category => { %>
+            <option value="<%= category._id%>">
+              <%= category.BrandName %> 
+            </option>
+          <% }); %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" rows="3" placeholder="Enter product description" name="Description"></textarea>
+        <div id="descriptionError" class="text-danger validation-msg"></div>
+      </div>
+      <div class="form-group">
+        <label for="UrunImage">Image URL</label>
+        <input type="file" name="image" accept="image/*" class="form-control" id="image" placeholder="Enter image URL"  multiple>
+        <div class="container d-flex">
+          <div id="image-container" class="mt-5 ms-5 mb-5"></div>
+          <div id="cropper-container" class="mt-3 mb-5"></div>
+          <div id="imageError" class="text-danger validation-msg"></div>
+        </div>
+        <button type="submit" class="btn btn-primary" id="submitButton">Add Product</button>
+      </div>
+      
+    </form>
+    <% if (message==" ") { %>
+      <p> </p>
+    <% } else { %>
+      <p class="text-danger"><%= message %></p>
+    <% } %>
+  </div>
+  
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#addProductForm").submit(function (event) {
+        $(".validation-msg").text("");
+        var productName = $("#productName").val();
+        if (!productName.trim()) {
+          $("#productNameError").text("Product Name is required");
+          event.preventDefault();
+        }
+
+        var price = $("#price").val();
+        if (isNaN(price) || price <= 0) {
+          $("#priceError").text("Price must be a number greater than 1");
+          event.preventDefault();
+        }
+
+        var stock = $("#stock").val();
+        if (isNaN(stock) || stock <= 0) {
+          $("#stockError").text("Stock must be a number greater than 1");
+          event.preventDefault();
+        }
+
+        var rating = $("#Rating").val();
+        if (isNaN(rating) || rating < 1 || rating > 5) {
+          $("#ratingError").text("Rating must be a number between 1 and 5");
+          event.preventDefault();
+        }
+
+  // Additional validation for Description
+  var description = $("#description").val();
+      if (!description.trim()) {
+        $("#descriptionError").text("Description is required");
+        event.preventDefault();
+      }
+
+        var image = $("#image").val();
+        if (!image) {
+          $("#imageError").text("Image is required");
+          event.preventDefault();
+        }
+
+        if ($(".validation-msg").text() !== "") {
+          event.preventDefault();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

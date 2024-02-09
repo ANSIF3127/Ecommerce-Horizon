@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Category</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <style>
+    /* Add your custom styles here */
+    /* Assuming a custom.css file */
+
+/* Background and text colors */
+body {
+  background-color: #f4f4f4; /* Change this to your desired background color */
+  color: #333; /* Change this to your desired text color */
+}
+
+.container {
+  margin-top: 50px; /* Adjust the top margin as needed */
+}
+
+.form-container {
+  background-color: #fff; /* Background color for the form container */
+  padding: 20px; /* Padding around the form */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for a slight depth effect */
+}
+
+/* Custom styles for the form elements */
+.btn-primary {
+  background-color: #007bff; /* Change button color */
+  border-color: #007bff; /* Change button border color */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* Change button color on hover */
+  border-color: #0056b3; /* Change button border color on hover */
+}
+
+/* Additional styles can be added based on your preferences */
+
+  </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mt-4">Add Category</h1><br>
+        <div class="form-container">
+          <div>
+            <form action="/UpdateCategoryPost/<%= category._id %>" method="post">
+              <div class="form-group row">
+                <label for="categoryName" class="col-sm-3 col-form-label text-right">Category Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="categoryName" value="<%= category.BrandName %>" name="categoryName" placeholder="Enter category name">
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Add Category</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+
+  <!-- Bootstrap JS (optional, only needed if you require JavaScript) -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
