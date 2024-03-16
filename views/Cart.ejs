@@ -191,7 +191,7 @@
                       <% if (cartfind.length > 0) { %>
                       <thead>
                         <tr>
-                          <th class="product-thumbnail">Imageee</th>
+                          <th class="product-thumbnail">Image</th>
                           <th class="product-name">Product</th>
                           <th class="product-price">Price</th>
                           <th class="product-quantity">Quantity</th>
@@ -210,19 +210,24 @@
                           </td>
                           <td>₹<%= product.price %></td>
                           <td>
+                        
                             <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
                               <div class="input-group-prepend">
-                                  <button class="btn btn-outline-black decrease" type="button" onclick="updateQuantity(1, 'decrease')">−</button>
+                                <button class="btn btn-outline-black decrease" type="button" data-product-id="<%= product._id %>" data-index="<%= index %>">−</button>
                               </div>
-                              <input type="text" class="form-control text-center quantity-amount" value="<%= product.quantity%>" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" id="quantity1">
-                              
+                              <input type="text" class="form-control text-center quantity-amount" value="<%= product.quantity %>" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" id="quantity<%= index %>">
                               <div class="input-group-append">
-                                  <button class="btn btn-outline-black increase" type="button" onclick="updateQuantity(1, 'increase')">+</button>
+                                <button class="btn btn-outline-black increase" type="button" data-product-id="<%= product._id %>" data-index="<%= index %>">+</button>
                               </div>
-                          </div>
-        
+                            </div>
+                            <% if (product.stockError) { %>
+                              <div class="text-danger"><%= product.stockError %></div>
+                              <td></td>
+                              <% } else { %>
+                              <td><div id="total<%= index %>">₹<%= product.price * product.quantity %></div></td> 
+                            <% } %>
                           </td>
-                          <td>₹<%= product.price * product.quantity %></td>
+                         
                           <td><a href="/removecart/<%=product._id %>" class="btn btn-black btn-sm">X</a></td>
                         </tr>
         
@@ -368,40 +373,61 @@
 		<script src="js/tiny-slider.js"></script>
 		<script src="js/custom.js"></script>
 	
-
     <script>
-         function updateQuantity(index, action) {
-        // Make sure the quantity cannot go below 1
-        const currentQuantity = parseInt(document.getElementById(`quantity${index}`).value);
-        const newQuantity = action === 'decrease' ? Math.max(1, currentQuantity - 1) : currentQuantity + 1;
-
-        // Make an AJAX request to the server to update quantity
-        fetch('/updateQuantity', {
+      document.addEventListener("DOMContentLoaded", function () {
+        function updateQuantity(productid, action, index) {
+          const quantityElement = document.getElementById(`quantity${index}`);
+          const currentQuantity = parseInt(quantityElement.value);
+    
+          let newQuantity = action === 'decrease' ? Math.max(1, currentQuantity - 1) : currentQuantity + 1;
+    
+          fetch(`/updateQuantity/${productid}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+              'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ index, action }),
-        })
+            body: JSON.stringify({ productid, index, action }),
+          })
             .then(response => response.json())
             .then(data => {
-                if (data.success) {
-                    // Update the quantity and total in the DOM
-                    const quantityElement = document.getElementById(`quantity${index}`);
-                    const totalElement = document.getElementById(`total${index}`);
-
-                    quantityElement.value = newQuantity;
-                    // Update the totalElement if it exists in your HTML
-                    if (totalElement) {
-                        totalElement.innerText = `₹${data.updatedCartItem.itemTotal}`;
-                    }
-                } else {
-                    console.error(data.error);
+              if (data.success) {
+                quantityElement.value = newQuantity;
+    
+                const totalElement = document.getElementById(`total${index}`);
+                if (totalElement) {
+                  totalElement.innerText = `₹${data.updatedCartItem.itemTotal}`;
                 }
+              } else {
+                console.error(data.error);
+              }
             })
-            .catch(error => console.error(error));
-    }
-</script>
+            .catch(error => console.log(error));
+        }
+    
+        // Add event listeners for quantity update buttons
+        const decreaseButtons = document.querySelectorAll('.decrease');
+        const increaseButtons = document.querySelectorAll('.increase');
+    
+        decreaseButtons.forEach(button => {
+          button.addEventListener('click', function (e) {
+            e.preventDefault();
+            const productId = this.dataset.productId;
+            const index = this.dataset.index;
+            updateQuantity(productId, 'decrease', index);
+          });
+        });
+    
+        increaseButtons.forEach(button => {
+          button.addEventListener('click', function (e) {
+            e.preventDefault();
+            const productId = this.dataset.productId;
+            const index = this.dataset.index;
+            updateQuantity(productId, 'increase', index);
+          });
+        });
+      });
+    </script>
+    
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

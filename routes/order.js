@@ -17,6 +17,14 @@ router.get('/UserOrder',checkSessionBlocked,Ordercontroller.OrderRender)
 
 ///// cancel
 router.get('/cancel/:userid/:productid',Ordercontroller.OrderCancel)
+///// Return    
+router.get('/return/:userid/:productid',Ordercontroller.OrderReturn)
+////// view
+router.get('/view/:productid/:orderid',checkSessionBlocked,Ordercontroller.ViewOrder)
+
+
+
+router.get('/Invoice/:orderid',checkSessionBlocked,Ordercontroller.Invoice)
 
 
 

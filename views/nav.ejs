@@ -18,7 +18,7 @@
     } 
 .navbar-nav .nav-item .nav-link {
   text-decoration: none;
-  color: #fdfbfb;
+  color: #050505;
   font-size: 15px; /* Adjust font size */
   padding: 0.8rem 1rem; /* Adjust padding */
   position: relative;
@@ -80,13 +80,19 @@
 .nav3{
   background-image: linear-gradient(90deg, #191472 0%, #0b0ba4 35%, #006eff 100%);
 }
+.cls{
+  background-color: #006eff;
+}
+.form-control{
+  background-color: #0b0ba4;
+}
 </style>
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark  p-3 nav3">
     <a class="navbar-brand" href="/project/public/image/banner1.webp">
-      <img src="/image/phonemate-high-resolution-logo-removebg-preview.png" class="img-fluid" style="width:150px;height:70px;" alt="Logo">
+      <img src="/image/o-removebg-preview.png" class="img-fluid" style="width:150px;height:70px;" alt="Logo">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -99,7 +105,7 @@
         </li>
         <div>
           <!-- <label for="category">Category</label> -->
-          <select  class="form-control" aria-label="Default select example" onchange="showCategoryDetails()" >
+          <select  class="form-control " aria-label="Default select example" onchange="showCategoryDetails()" >
             <option class=""  value="">category</option>
 
             <% Categorie.forEach(category => { %>
@@ -124,7 +130,7 @@
         <a href="/Profile" type="button" class="btn btn-outline-dark fw-500 rounded button1">
           <i class="fas fa-user me-lg-2"></i> 
         </a>
-        <a href="/wishlist" type="button" class="btn btn-outline-dark fw-500 rounded button1">
+        <a href="/wishList" type="button" class="btn btn-outline-dark fw-500 rounded button1">
           <i class="fas fa-heart me-lg-2"></i>
         </a>
         <a href="/getCart" type="button" class="btn btn-outline-dark fw-500 rounded button1">

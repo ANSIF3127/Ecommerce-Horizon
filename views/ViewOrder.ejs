@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Summary</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            margin-bottom: 20px;
+        }
+        .invoice-button {
+            background-color: red;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .invoice-button:hover,
+        .invoice-button:active {
+            background-color: darkred;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2 class="text-center mb-4">Order Summary</h2>
+        <div class="container">
+            <a href="/Invoice/<%= order._id %>" class="invoice-button">Invoice</a>
+        </div>
+
+        <!-- User Address -->
+        <div class="card">
+            <div class="card-header">
+                User Address
+            </div>
+            <div class="card-body">
+                <p><strong>Name:</strong> <%= address ? address.firstname + ' ' + address.lastname : 'Name Not Found' %></p>
+                <p><strong>Address:</strong> <%= address ? address.address + ', ' + address.city + ', ' + address.pincode : 'Address Not Found' %></p>
+                <p><strong>Phone:</strong> <%= address ? address.phone : 'Phone Not Found' %></p>
+            </div>
+        </div>
+
+        <!-- User Profile -->
+      
+        <!-- Order Details -->
+        <div class="card">
+            <div class="card-header">
+                Order Details
+            </div>
+            <div class="card-body">
+                <p><strong>Order ID:</strong> <%= order ? order._id : 'Order ID Not Found' %></p>
+                <p><strong>Order Date:</strong> <%= order ? order.orderDate : 'Order Date Not Found' %></p>
+                <p><strong>Payment Method:</strong> <%= order ? order.paymentMethod : 'Payment Method Not Found' %></p>
+            </div>
+        </div>
+
+        <!-- Product Collection -->
+        <div class="card">
+            <div class="card-header">
+                Product Collection
+            </div>
+            <div class="card-body">
+                <% if (order && order.productcollection && order.productcollection.length > 0) { %>
+                    <% order.productcollection.forEach(productItem => { %>
+                        <p><strong>Product Name:</strong> <%= productItem.productName %></p>
+                        <p><strong>Price:</strong> $<%= productItem.price %></p>
+                        <p><strong>Quantity:</strong> <%= productItem.quantity %></p>
+                        <p><strong>Status:</strong> <%= productItem.status %></p>
+                       
+                    <% }); %>
+                <% } else { %>
+                    <p>No products in the order</p>
+                <% } %>
+            </div>
+        </div>
+
+    </div>
+   
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+

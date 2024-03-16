@@ -4,9 +4,14 @@ const Categorymgm =require("../model/admin/Category")
 
 ////product Managment get 
 const productManagement=async(req,res)=>{
-    const data=await Product.find().populate('Category')
-    res.render('ProductManagement',{data});
-}
+  try {
+    const data = await Product.find().populate('Category');
+    res.render('ProductManagement', { data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Internal Server Error');
+  }
+};
 
 
 //  Add Product  GET
@@ -38,17 +43,21 @@ console.log(req.body,"shfshdfhs");
 
   try {
     const Category = await Categorymgm.find()
+
+ 
     // Check if a product with the same name already exists
     const existingProduct = await Product.findOne({ ProductName: req.body.ProductName });
     if (existingProduct) {
       console.log('Product already exists.');
-      return res.render('addProduct',{Category,
+      return res.render('addProduct',{
+        Category,
         message: 'Product already exists.',
       });
     }
     
     // Save the new product to the database
-    await Product.create(productData).populate('Category')
+    const newProduct = await Product.create(productData);
+    await newProduct.populate('Category').populate('Category');
 
     // Redirect to the ProductManagement page after successful product addition
     res.redirect('/ProductManagement');
@@ -89,13 +98,26 @@ const updateGet =async (req,res)=>{
         Description: req.body.Description,
         Color: req.body.Color,
         Rating: req.body.Rating,
-        image: req.files.map(file => file.path.substring(6))
+        // image: req.files.map(file => file.path.substring(6))
     };
 
     try {
     
         // Use findByIdAndUpdate to enable population
         await Product.findByIdAndUpdate(id, newProductData, { new: true }).populate('Category');
+
+
+        if (req.files && req.files.length > 0) {
+          const newImages = req.files.map(file => file.path.substring(6))
+          newProductData.image = newProductData.image.concat(newImages);
+        }
+        if (!newProductData) {
+          console.log("Product not found");
+          res.status(404).send("Product not found");
+          return;
+        }
+        await newProductData.save();
+        console.log(newProductData);
 
         res.redirect('/ProductManagement');
     } catch (err) {
@@ -173,6 +195,28 @@ const productManagementSearch = async (req, res) => {
   }
 };
 
+const deleteimg = async (req, res) => {
+  console.log('enterr');
+  const productId = req.body.productId;
+  const imageIndex = req.body.imageIndex;
+  try {
+    console.log("HOY");
+    const product = await Product.findById(productId);
+    if (!product) {
+      return res.status(404).send('Product not found');
+    }
+    if (imageIndex < 0 || imageIndex >= product.image.length) {
+      return res.status(400).send('Invalid image index');
+    }
+    product.image.splice(imageIndex, 1);
+    await product.save();
+    res.status(200).send('Image removed successfully');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+} 
+
 
 
 
@@ -186,5 +230,5 @@ module.exports={
     getDeleteProductManagement,
     getUnlistProduct,
     listProduct,
-
+    deleteimg,
 }

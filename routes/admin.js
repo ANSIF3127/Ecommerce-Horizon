@@ -6,11 +6,17 @@ const path = require("path")
 
 
 
+
 ///  Admin login (Get,post)    
 router.get('/admin_Login', adminController.adminLogin);
 router.post('/admin_Login', adminController.loginPost);
 //// Dashboard 
 router.get('/admin_Dashboard',Checksession,adminController.dashboard);
+// Route for generating PDF report
+router.get('/salesreport',Checksession,adminController. generateSalesReport);
+
+// Route for generating Excel report
+router.get('/generate-pdf',Checksession,adminController. pdfreport);
 
 
 //                Category Management           //
@@ -51,6 +57,25 @@ router.get('/unblockuser/:id', Checksession, adminController.unblock);
 router.get('/adminOrder', Checksession, adminController. Order);
 ////  updateorder
 router.post('/update-status/:orderid/:productid', adminController. updateUserOrder);
+
+
+
+
+//// product Offer
+router.get('/productOffer', Checksession, adminController. poductOffer);
+////// add product offer render
+router.get('/addProductOffer', Checksession, adminController. addProductOffer);
+router.post('/addProductOffer', Checksession, adminController. productOfferpost);
+///// delete product offer
+router.get('/deleteproductoffer/:id', Checksession, adminController. DeleteProductOffer);
+
+
+////// add product offer render
+router.get('/addBrandOffer', Checksession, adminController. addBrandOffer);
+router.post('/addBrandOffer', Checksession, adminController. addBrandOfferpost);
+///// delete product offer
+router.get('/deleteBrandOffer/:id', Checksession, adminController. DeleteBrandOffer);
+
 
 
 

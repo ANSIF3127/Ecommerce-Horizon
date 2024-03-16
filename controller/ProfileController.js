@@ -1,7 +1,7 @@
 const addressCollection = require('../model/admin/address')
 const User = require('../model/admin/User')
 const Categorymgm = require("../model/admin/Category")
-
+const Ordercollection = require('../model/admin/order')
 
 
 //// Profile Render
@@ -9,7 +9,8 @@ const Profile = async (req, res) => {
     const UsersId = req.session.userid;
     const profileData = await User.findOne({ _id: UsersId })
     const Categorie = await Categorymgm.find({});
-  const address=await addressCollection.findOne()
+    const address = await addressCollection.findOne({ userid: UsersId });
+    const order = await Ordercollection.findOne({ userid: UsersId });
     res.render("Profile", { profileData, Categorie,address })
 }
 
@@ -18,46 +19,71 @@ const Profile = async (req, res) => {
 const PasswordChange = async (req, res) => {
     const userid = req.session.userid
     console.log(userid);
-    res.render('changePassword')
+    const Categorie = await Categorymgm.find({});
+    res.render('changePassword',{ Categorie,errorMessage: '' })
 }
 ///// Change Password post
 const PasswordChangepost = async (req, res) => {
     const userId = req.session.userid;
-
+    const { currentPassword, newPassword, confirmPassword } = req.body;
     try {
         const user = await User.findById(userId);
 
-        if (!user) {
-            return res.status(404).send('User not found');
+        // Backend validation for current password
+        if (user.Password !== currentPassword) {
+            return res.render('changePassword', {
+                errorMessage: {
+                    currentPassword: 'Incorrect current password.',
+                    newPassword: '',
+                    confirmPassword: '',
+                    general: '',
+                },
+                Categorie: await Categorymgm.find({})
+            });
         }
 
-        const currentPassword = req.body.currentPassword.trim();
-        const newPassword = req.body.newPassword.trim();
-        const confirmPassword = req.body.confirmPassword.trim();
-
-        // Validate current password against the user's actual current password
-        if (currentPassword !== user.password) {
-            return res.status(400).send('Incorrect current password');
+        // Backend validation for new password and confirm password
+        if (newPassword !== confirmPassword) {
+            return res.render('changePassword', {
+                errorMessage: {
+                    currentPassword: '',
+                    newPassword: 'New password and confirm password do not match.',
+                    confirmPassword: '',
+                    general: '',
+                },
+                Categorie: await Categorymgm.find({})
+            });
         }
 
-        // Compare passwords directly
-        if (newPassword === confirmPassword) {
-            // Update user password
-            user.password = newPassword;
-            await user.save();
-
-            res.redirect('/Profile'); 
-        } else {
-            res.status(400).send('New passwords do not match');
+        if (newPassword.length < 5) {
+            return res.render('changePassword', {
+                errorMessage: {
+                    currentPassword: '',
+                    newPassword: 'New password must be at least 5 characters long.',
+                    confirmPassword: '',
+                    general: '',
+                },
+                Categorie: await Categorymgm.find({})
+            });
         }
+
+        // Update user password
+        user.Password = newPassword;
+        await user.save();
+
+        res.redirect('/Profile');
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
     }
 };
 
+
+
+
 ///// change profile
 const changeProfile=async(req,res)=>{
+    
     res.render('editProfile')
 }
 
@@ -153,6 +179,7 @@ const EditAddressPost = async (req, res) => {
             pincode,
             phone,
             email,
+            state,
         });
         res.redirect('/address');
     } catch (error) {

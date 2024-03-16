@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Category Page</title>
-  
-  <!-- SweetAlert CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
   <!-- Bootstrap CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- DataTable HEADER-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.6/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.6/dist/sweetalert2.all.min.js"></script>
   <style>
     /* Your custom styles here */
     .sidebar {
@@ -155,6 +156,47 @@ body.dark .toggle-dark-theme .icon::before {
 .sidebar .nav-link {
   margin-bottom: 20px; /* Adjust the value as needed for spacing */
 }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    @media screen and (max-width: 600px) {
+      th, td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      th {
+        text-align: center;
+      }
+    }
+    
+    .delete-button {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #ff0000; /* Red color for delete button, you can change it to your desired color */
+        color: #fff; /* Text color for the button */
+        text-decoration: none; /* Remove underline from the link */
+        border-radius: 4px; /* Optional: Adds rounded corners */
+    }
+
+    .delete-button:hover {
+        background-color: #cc0000; /* Darker red color on hover */
+    }
   </style>
 </head>
 <body>
@@ -165,7 +207,7 @@ body.dark .toggle-dark-theme .icon::before {
     <div class="col-md-3 sidebar">
       <div style="color:aliceblue"><h2>ℍ𝕆ℝ𝕀ℤ𝕆ℕ 𝕄𝕆𝔹𝕀𝕃𝔼𝕊</h2></div>
       <br>
-      <ul class="nav flex-column ">
+      <ul class="nav flex-column">
         <li class="nav-item button">
           <a class="nav-link" href="/admin_Dashboard"><i class="fas fa-home"></i> Dashboard</a>
         </li>
@@ -179,7 +221,16 @@ body.dark .toggle-dark-theme .icon::before {
           <a class="nav-link" href="/Category"><i class="fas fa-list"></i> Category</a>
         </li>
         <li class="nav-item button">
+          <a class="nav-link" href="/Coupons"><i class="fas fa-tags"></i> Coupon</a>
+        </li>
+        <li class="nav-item button">
           <a class="nav-link" href="/adminOrder"><i class="fas fa-shopping-bag"></i> Order</a>
+        </li>
+        <li class="nav-item button">
+          <a class="nav-link" href="/Sales"><i class="fas fa-chart-line"></i> Sales</a>
+        </li>
+        <li class="nav-item button">
+          <a class="nav-link" href="/productOffer"><i class="fas fa-percent"></i> Product Offer</a>
         </li>
         <br>
         <br>
@@ -189,40 +240,26 @@ body.dark .toggle-dark-theme .icon::before {
         <!-- Add more sidebar links as needed -->
       </ul>
     </div>
- 
 
+ <!-- Content area -->
+ <div class="col-md-9 main-content">
+        <h1 style="text-align: center;">Category Page</h1>  
+        <br>
+        <div class="text-left mb-4">
+            <a href="/addCategory" class="btn btn-success">Add Category</a>
+        </div>
 
-        <div class="col-md-9 main-content">
-          <div class="container mt-4 content">
-            <h1 class="text-center">Category Page</h1>
-            <br>
-          
-            <div class="row">
-              <div class="col-md-6">
-                  <div class="text-left mb-4">
-                      <a href="/addCategory" class="btn btn-success">Add Category</a>
-                  </div>
-              </div>
-              <div class="col-md-6">
-                  <div class="input-group mb-3" style="max-width: 300px; float: right;">
-                      <input type="text" id="searchInput" class="form-control" placeholder="Search...">
-                      <div class="input-group-append">
-                          <span class="input-group-text"><i class="fas fa-search"></i></span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-        <div class="table-responsive">
-          <table class="table table-bordered table-hover">
-            <thead class="thead-dark">
-              <tr>
-                <th>ID</th>
-                <th>Brand Name</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% categories.forEach((val, index) => { %>
+         
+    <table id="example" class="table table-striped" style="width:100%">
+        <thead>
+          <tr>
+            <th style="background-color:#3da3f6">ID</th>
+            <th style="background-color:#3da3f6">Brand Name</th>
+            <th style="background-color:#3da3f6">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% categories.forEach((val, index) => { %>
                 <tr>
                   <td><%= index + 1 %></td>
                   <td><%= val.BrandName %></td>
@@ -234,13 +271,25 @@ body.dark .toggle-dark-theme .icon::before {
                   </td>
                 </tr>
                 <% }); %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
+          
+        </tbody>
+      </table>   
+
 </div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.8/datatables.min.js"></script>
+    <script>
+      new DataTable('#example');
+
+    </script>   
+<!-- Bootstrap JS and Font Awesome -->
 <!-- Bootstrap JS (Optional for certain features) -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -248,29 +297,19 @@ body.dark .toggle-dark-theme .icon::before {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-<!--//////////////////search///////////////////////////-->
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('searchInput');
-    const tableRows = document.querySelectorAll('.table tbody tr');
-
-    searchInput.addEventListener('input', function(event) {
-      const searchTerm = event.target.value.toLowerCase().trim();
-
-      tableRows.forEach(row => {
-        const brandName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
-
-        if (brandName.includes(searchTerm)) {
-          row.style.display = '';
+    function toggleDark() {
+        const body = document.querySelector("body");
+        if (body.classList.contains("dark")) {
+            body.classList.remove("dark");
+            localStorage.setItem("theme", "light");
         } else {
-          row.style.display = 'none';
+            body.classList.add("dark");
+            localStorage.setItem("theme", "dark");
         }
-      });
-    });
-  });
-
+    }
 </script>
-<script>
+    <script>
   document.addEventListener("DOMContentLoaded", function () {
       const deleteButtons = document.querySelectorAll(".delete-button");
   
@@ -325,5 +364,6 @@ body.dark .toggle-dark-theme .icon::before {
       }
     });
   </script>  
+  
 </body>
 </html>

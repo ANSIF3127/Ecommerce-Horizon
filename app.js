@@ -24,15 +24,23 @@ const adminRoutes = require('./routes/admin');
 const userRoutes = require('./routes/user');
 const productRoutes = require('./routes/Product');
 const profileRoutes = require('./routes/Profile');
-
 const Orderdetails = require('./routes/order');
 const Cartdetails = require('./routes/cart');
+const Coupondetails = require('./routes/Coupon');
+const Paymentdatails=require('./routes/payment')
+const reportcontroller=require('./routes/report')
+
+
 app.use('/', adminRoutes);
 app.use('/', userRoutes);
 app.use('/',productRoutes);
 app.use('/',profileRoutes);
 app.use('/',Orderdetails);
 app.use('/',Cartdetails );
+app.use('/',Coupondetails);
+app.use('/',Paymentdatails)
+app.use('/',reportcontroller)
+
 // app.use('/',mongoose);
 // View engine setup
 app.set("view engine", "ejs");

@@ -26,13 +26,18 @@ router.get('/otp', usercontroller.otpGet);
 
 /// forgot password
 router.get('/forgotemail', usercontroller.forgotemail);
-router.post('/forgotpassword', usercontroller.forgotemailpost);
-
-//// forgot otp get , post
+router.post('/forgotOtp', usercontroller.forgotemailpost);
+//otp
 router.get('/forgotOtp', usercontroller.forgototp);
-
-//// password get
+router.post('/resendOtps', usercontroller.resendOtps);
+router.post('/forgotpassword', usercontroller.forgotOtpPost);
+//password
 router.get('/forgotpassword', usercontroller.forgotpassword);
+
+// Add a route for updating the password
+router.post('/updatePassword', usercontroller.updatePassword);
+
+
 
 //// home page
  router.get('/User_Login',checkSessionBlocked, usercontroller.getHome);
@@ -46,6 +51,8 @@ router.get('/product/:id',checkSessionBlocked, usercontroller.getProductView);
 ///product list
 router.get('/ProductList',checkSessionBlocked,usercontroller.productlist);
 
+///// wallet history
+router.get('/WalletHistory', checkSessionBlocked, usercontroller. Wallethistory);
 
 
   

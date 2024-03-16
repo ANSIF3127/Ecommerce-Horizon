@@ -1,6 +1,7 @@
 <%- include('nav') %>
 <!-- <link href="css/tiny-slider.css" rel="stylesheet">
 <link href="/css/style.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
     .carousel-item img {
   height: 500px; /* Adjust the height as needed */
@@ -30,6 +31,49 @@
                0px 0px 90px #0112fe;
 }
 
+  .footer {
+    background-color: #f8f9fa; /* Adjust the color to match the screenshot */
+    padding: 40px 0;
+    font-family: Arial, sans-serif; /* Adjust the font-family as needed */
+  }
+  .footer h2 {
+    font-size: 24px; /* Adjust the font-size as needed */
+    margin-bottom: 20px;
+  }
+  .footer p {
+    font-size: 16px; /* Adjust the font-size as needed */
+    color: #6c757d; /* Adjust the color to match the screenshot */
+    margin-bottom: 20px;
+  }
+  .footer .social-icons a {
+    font-size: 24px; /* Adjust the font-size as needed */
+    margin-right: 15px;
+    color: #6c757d; /* Adjust the color to match the screenshot */
+  }
+  .footer .row > div {
+    margin-bottom: 20px;
+  }
+  .footer ul {
+    list-style: none;
+    padding: 0;
+  }
+  .footer ul li a {
+    color: #6c757d; /* Adjust the color to match the screenshot */
+    text-decoration: none;
+    font-size: 16px; /* Adjust the font-size as needed */
+    margin-bottom: 10px;
+    display: block;
+  }
+  .footer ul li a:hover {
+    text-decoration: underline;
+  }
+  .footer .copyright {
+    font-size: 14px; /* Adjust the font-size as needed */
+    color: #6c757d; /* Adjust the color to match the screenshot */
+    border-top: 1px solid #dee2e6; /* Adjust the color to match the screenshot */
+    padding-top: 20px;
+    margin-top: 20px;
+  }
   </style>
 </head>
 
@@ -121,46 +165,33 @@
           <div class="mb-4 footer-logo-wrap"><a href="#" class="footer-logo"> <span>ℍ𝕆ℝ𝕀ℤ𝕆ℕ 𝕄𝕆𝔹𝕀𝕃𝔼𝕊</span></a></div>
           <p class="mb-4">Discover the pinnacle of mobile technology at HorizonMobiles.  Find your perfect smartphone among sleek designs and powerful features. Redefine your mobile experience with us. Welcome to a new era in communication!</p>
 
-          <ul class="list-unstyled custom-social">
-            <li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
-            <li><a href="#"><span class="fa fa-brands fa-twitter"></span></a></li>
-            <li><a href="#"><span class="fa fa-brands fa-instagram"></span></a></li>
-            <li><a href="#"><span class="fa fa-brands fa-linkedin"></span></a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-8">
-          <div class="row links-wrap">
-            <div class="col-6 col-sm-6 col-md-3">
-              <ul class="list-unstyled">
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contact us</a></li>
-              </ul>
-            </div>
-
-            <div class="col-6 col-sm-6 col-md-3">
-              <ul class="list-unstyled">
-                <li><a href="#">Support</a></li>
-                <li><a href="#">Knowledge base</a></li>
-                <li><a href="#">Live chat</a></li>
-              </ul>
-            </div>
-
-            <div class="col-6 col-sm-6 col-md-3">
-              <ul class="list-unstyled">
-                <li><a href="#">Jobs</a></li>
-                <li><a href="#">Our team</a></li>
-                <li><a href="#">Leadership</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-              </ul>
-            </div>
-
-            
+          <div class="social-icons">
+            <!-- Add social media icons here -->
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
           </div>
         </div>
-
+        <div class="col-md-4">
+          <ul>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact us</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <ul>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Knowledge base</a></li>
+            <li><a href="#">Live chat</a></li>
+            <li><a href="#">Jobs</a></li>
+            <li><a href="#">Our team</a></li>
+            <li><a href="#">Leadership</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
       </div>
 
       <div class="border-top copyright">

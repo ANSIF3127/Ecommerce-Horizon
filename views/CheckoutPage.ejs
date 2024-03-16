@@ -7,402 +7,708 @@
 */ -->
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="author" content="Untree.co">
-  <link rel="shortcut icon" href="favicon.png">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="Untree.co">
+	<link rel="shortcut icon" href="favicon.png">
 
-  <meta name="description" content="" />
-  <meta name="keywords" content="bootstrap, bootstrap4" />
-
-
-<!-- Bootstrap CSS -->
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-xrR5NqgeqD3Pbe5VZjOxwzrqMCr2w8P1b8r9z6p+8RbGpK3b5k9Rv9Im9Z9R/2c+" crossorigin="anonymous">
+	<meta name="description" content="" />
+	<meta name="keywords" content="bootstrap, bootstrap4" />
 
 
+	<!-- Bootstrap CSS -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+		integrity="sha384-xrR5NqgeqD3Pbe5VZjOxwzrqMCr2w8P1b8r9z6p+8RbGpK3b5k9Rv9Im9Z9R/2c+" crossorigin="anonymous">
 
-		<!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-		<link href="css/tiny-slider.css" rel="stylesheet">
-		<link href="/css/style.css" rel="stylesheet">
-		<title>Furni Free Bootstrap 5 Template for Furniture and Interior Design Websites by Untree.co </title>
-		<style>
-			.navbar {
-			  padding: 0.5rem 1rem; /* Adjust padding to reduce height */
-			  height: 70px; /* Adjust the height as needed */
-			} 
-		.navbar-nav .nav-item .nav-link {
-		  text-decoration: none;
-		  color: #fdfbfb;
-		  font-size: 15px; /* Adjust font size */
-		  padding: 0.8rem 1rem; /* Adjust padding */
-		  position: relative;
+
+
+	<!-- Include jQuery -->
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+	<!-- Bootstrap CSS -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+	<link href="css/tiny-slider.css" rel="stylesheet">
+	<link href="/css/style.css" rel="stylesheet">
+
+	<title>Furni Free Bootstrap 5 Template for Furniture and Interior Design Websites by Untree.co </title>
+	<style>
+		.navbar {
+			padding: 0.5rem 1rem;
+			/* Adjust padding to reduce height */
+			height: 70px;
+			/* Adjust the height as needed */
 		}
-		
+
+		.navbar-nav .nav-item .nav-link {
+			text-decoration: none;
+			color: #fdfbfb;
+			font-size: 15px;
+			/* Adjust font size */
+			padding: 0.8rem 1rem;
+			/* Adjust padding */
+			position: relative;
+		}
+
 		.navbar-nav .nav-item .nav-link::before,
 		.navbar-nav .nav-item .nav-link::after {
-		  content: "";
-		  position: absolute;
-		  width: 100%;
-		  height: 2px;
-		  background: #1f1e1e;
-		  transform: scaleX(0);
-		  transition: all 0.6s ease;
+			content: "";
+			position: absolute;
+			width: 100%;
+			height: 2px;
+			background: #1f1e1e;
+			transform: scaleX(0);
+			transition: all 0.6s ease;
 		}
-		
+
 		.navbar-nav .nav-item .nav-link::before {
-		  top: 0;
-		  left: 0;
-		  transform-origin: left;
+			top: 0;
+			left: 0;
+			transform-origin: left;
 		}
-		
+
 		.navbar-nav .nav-item .nav-link::after {
-		  bottom: 0;
-		  left: 0;
-		  transform-origin: right;
+			bottom: 0;
+			left: 0;
+			transform-origin: right;
 		}
-		
+
 		.navbar-nav .nav-item .nav-link:hover::before,
 		.navbar-nav .nav-item .nav-link:hover::after {
-		  transform: scaleX(1);
+			transform: scaleX(1);
 		}
-		
+
 		/* Style for wishlist and cart buttons */
 		.navbar-nav .nav-item .btn {
-		  
-		  color: #131313 !important;
+
+			color: #131313 !important;
 		}
-		 /* Adjusting banner height */
-		 .navbar-brand img {
-			  max-height: 50px; /* Adjust the max-height as needed */
-			}
-			
-			.navbar-nav .nav-item .btn.wishlist-active,
-			.navbar-nav .nav-item .btn.cart-active {
-			  color: #ffffff !important;
-			  background-color: #080808 !important; /* Change button background color to black */
-			}
-			.button1:hover {
-		  box-shadow: 0px 0px 5px #fe21a2,
-					   0px 0px 30px #fe21a2,
-					   0px 0px 90px #fe21a2;
+
+		/* Adjusting banner height */
+		.navbar-brand img {
+			max-height: 50px;
+			/* Adjust the max-height as needed */
 		}
+
+		.navbar-nav .nav-item .btn.wishlist-active,
+		.navbar-nav .nav-item .btn.cart-active {
+			color: #ffffff !important;
+			background-color: #080808 !important;
+			/* Change button background color to black */
+		}
+
+		.button1:hover {
+			box-shadow: 0px 0px 5px #fe21a2,
+				0px 0px 30px #fe21a2,
+				0px 0px 90px #fe21a2;
+		}
+
 		.button2:hover {
-		  box-shadow: 0px 0px 5px #29f306,
-					   0px 0px 30px #18d703,
-					   0px 0px 90px #08fb51;
+			box-shadow: 0px 0px 5px #29f306,
+				0px 0px 30px #18d703,
+				0px 0px 90px #08fb51;
 		}
-		.nav3{
-		  background-image: linear-gradient(90deg, #191472 0%, #0b0ba4 35%, #006eff 100%);
+
+		.nav3 {
+			background-image: linear-gradient(90deg, #191472 0%, #0b0ba4 35%, #006eff 100%);
 		}
-		</style>
-	</head>
+		.coupon-section {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+	
+	</style>
+</head>
 
-	<body>
+<body>
 
-		<!-- Start Header/Navigation -->
-		<nav class="navbar navbar-expand-lg navbar-dark  p-3 nav3">
-			<a class="navbar-brand" href="/project/public/image/banner1.webp">
-			  <img src="/image/phonemate-high-resolution-logo-removebg-preview.png" class="img-fluid" style="width:150px;height:70px;" alt="Logo">
-			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-			  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-			  <span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-			  <ul class="navbar-nav" style="gap: 2rem;">
+	<!-- Start Header/Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark  p-3 nav3">
+		<a class="navbar-brand" href="/project/public/image/banner1.webp">
+			<img src="/image/phonemate-high-resolution-logo-removebg-preview.png" class="img-fluid"
+				style="width:150px;height:70px;" alt="Logo">
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+			<ul class="navbar-nav" style="gap: 2rem;">
 				<li class="nav-item active">
-				  <a class="nav-link" href="/Home">Home <span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="/Home">Home <span class="sr-only">(current)</span></a>
 				</li>
 				<div>
-				  <!-- <label for="category">Category</label> -->
-				  <select  class="form-control" aria-label="Default select example" onchange="showCategoryDetails()" >
-					<option class=""  value="">category</option>
-		
-					<% Categorie.forEach(category => { %>
-					  <option value="<%= category.BrandName %>">
-						  <%= category.BrandName %> 
-					  </option>
-				  <% }); %>
-				  </select>
-		
-		
-				  
-			  </div>
+					<!-- <label for="category">Category</label> -->
+					<select class="form-control" aria-label="Default select example" onchange="showCategoryDetails()">
+						<option class="" value="">category</option>
+
+						<% Categorie.forEach(category=> { %>
+							<option value="<%= category.BrandName %>">
+								<%= category.BrandName %>
+							</option>
+							<% }); %>
+					</select>
+
+
+
+				</div>
 				</li>
 				<li class="nav-item">
-				  <a class="nav-link" href="#">Contact</a>
+					<a class="nav-link" href="#">Contact</a>
 				</li>
 				<li class="nav-item">
-				  <a class="nav-link" href="/ProductList">Shop</a>
+					<a class="nav-link" href="/ProductList">Shop</a>
 				</li>
-			  </ul>
-			  <div class="ms-md-5 mt-2 mt-md-0">
+			</ul>
+			<div class="ms-md-5 mt-2 mt-md-0">
 				<a href="/Profile" type="button" class="btn btn-outline-dark fw-500 rounded button1">
-				  <i class="fas fa-user me-lg-2"></i> 
+					<i class="fas fa-user me-lg-2"></i>
 				</a>
 				<a href="/wishlist" type="button" class="btn btn-outline-dark fw-500 rounded button1">
-				  <i class="fas fa-heart me-lg-2"></i>
+					<i class="fas fa-heart me-lg-2"></i>
 				</a>
 				<a href="/getCart" type="button" class="btn btn-outline-dark fw-500 rounded button1">
-				  <i class="fas fa-shopping-cart me-lg-2"></i>
+					<i class="fas fa-shopping-cart me-lg-2"></i>
 				</a>
-				
-				<a id="logout-button" href="/" type="button" class="btn btn-outline-dark fw-600 rounded button2">
-				  <i class="bi bi-box-arrow-right">Logout</i>
-				</a>
-			  </div>
-			</div>
-		  </nav>
-		<!-- End Header/Navigation -->
 
-		<!-- Start Hero Section -->
-			<div class="hero">
-				<div class="container">
-					<div class="row justify-content-between">
-						<div class="col-lg-5 h-60">
-							<div class="intro-excerpt">
-								<h1>Checkout</h1>
-							</div>
+				<a id="logout-button" href="/" type="button" class="btn btn-outline-dark fw-600 rounded button2">
+					<i class="bi bi-box-arrow-right">Logout</i>
+				</a>
+			</div>
+		</div>
+	</nav>
+	<!-- End Header/Navigation -->
+
+	<!-- Start Hero Section -->
+	
+	<!-- End Hero Section -->
+		<div class="hero">
+			<div class="container">
+				<div class="row justify-content-between">
+					<div class="col-lg-5 h-60">
+						<div class="intro-excerpt">
+							<br>
+							<h1>Checkout</h1>
 						</div>
-						<div class="col-lg-7">
-							
-						</div>
+					</div>
+					<div class="col-lg-7">
+
 					</div>
 				</div>
 			</div>
+		</div>
 		<!-- End Hero Section -->
 
 		<div class="untree_co-section">
-		    <div class="container">
-		      
-		      <div class="row">
-		        <div class="col-md-6 mb-5 mb-md-0">
-					<h2 class="h3 mb-3 text-black">Billing Details</h2>
-					<div class="p-3 p-lg-5 border bg-white">
-					 <!-- billing checkout -->
+			<div class="container">
 
-					 <div class="payment__info">
-						<div class="payment__cc">
-						  <div class="payment__title personal-info">
-							<i class="icon icon-user"></i>Personal Information
-						  </div>
-						  <form action="/Checkoutpost" method="POST">
-							<% if (address && Array.isArray(address) && address.length> 0) { %>
-							  <div class="payment__shipping">
-								<% address.forEach((product, index)=> { %>
-							   
-								  <div class="details__user">
-									<div class="user__name">
-									  <%= product.firstname %>
-										<%= product.lastname %>
+				<div class="row">
+					<div class="col-md-6 mb-5 mb-md-0">
+						<h2 class="h3 mb-3 text-black">Billing Details</h2>
+						<div class="p-3 p-lg-5 border bg-white">
+							<!-- billing checkout -->
+
+							<div class="payment__info">
+								<div class="payment__cc">
+									<div class="payment__title personal-info">
+										<i class="icon icon-user"></i>Personal Information
 									</div>
-									<div class="user__address">Shipping Address: <%= product.address %>, <%= product.city %>
+									<form action="/Checkoutpost" method="POST">
+										<% if (address && Array.isArray(address) && address.length> 0) { %>
+											<div class="payment__shipping">
+												<% address.forEach((product, index)=> { %>
+
+													<div class="details__user">
+														<div class="user__name">
+															<%= product.firstname %>
+																<%= product.lastname %>
+														</div>
+														<div class="user__address">Shipping Address: <%= product.address %>,
+																<%= product.city %>
+														</div>
+
+														<!-- Radio button for shipping option -->
+														<div class="shipping__option">
+															<input type="radio" id="shippingOption" name="shippingOption"
+																value="<%= product._id %>" <%=index===0 ? 'checked' : '' %>>
+															<label for="shippingOption<%= product._id %>">Select this
+																shipping option</label>
+														</div>
+
+
+													</div>
+
+													<% }); %>
+
+											</div>
+
+											
+											
+								</div>
+								<% } else { %>
+									<p>No shipping information available.</p>
+									<% } %>
+							</div>
+
+							<div class="add-address-button">
+								<a href="/Orderaddressadd" class="btn action__add-address">Add Address</a>
+							</div>
+						</div>
+					</div>
+
+
+
+							<!-- Your Order Section -->
+							<div  class="col-md-6">
+								<div class="order-md-2">
+								<div class="row mb-5">
+									<div class="col-md-12">
+										<h2 class="h3 mb-3 text-black">Your Order</h2>
+										<div class="p-3 p-lg-5 border bg-white">
+											<table class="table site-block-order-table mb-5">
+												<thead>
+													<th>Product</th>
+													<th>Total</th>
+												</thead>
+												<% checkout.forEach((product, index)=> { %>
+													<tbody>
+														<tr>
+															<td><%= product.productname %><strong class="mx-2">x</strong><%= product.quantity %></td>
+															<td>₹<%= product.price %></td>
+														</tr>
+													</tbody>
+												<% }); %>
+												<tfoot>
+													<tr>
+														<td colspan="3" class="text-black font-weight-bold"><strong>Order Total:</strong></td>
+														<td>₹<%= totalsum %></td>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
 									</div>
-				  
-									<!-- Radio button for shipping option -->
-									<div class="shipping__option">
-										<input type="radio" id="shippingOption<%= product._id %>" name="shippingOption" value="<%= product._id %>" <%= index === 0 ? 'checked' : '' %>>
-										<label for="shippingOption<%= product._id %>">Select this shipping option</label>
+								</div>
+								</div>
+							</div>
+					
+							<!-- Coupon Code Section -->
+							<div class="col-md-6 order-md-2">
+								<div class="row mb-5">
+									<div class="col-md-12">
+										<h2 class="h3 mb-3 text-black">Coupon Code</h2>
+										<label for="c_code" class="text-black mb-3">Enter your coupon code if you have
+											one</label>
+											<div class="coupon-section">
+										<div class="input-group w-75 couponcode-wrap">
+										
+										<div class="p-3 p-lg-5 border bg-white">
+											<input id="coupencode" name="coupencode" type="text" class="form-control"
+											placeholder="Enter the code">
+										<button id="coupenbtn" type="button" class="btn btn-info"
+											
+										onclick="applyCoupon(`<%= totalsum %>`)">Apply Now</button>
+									
 									</div>
 									
-				  
-								  </div>
-				  
-								  <% }); %>
-				  
-							  </div>
-				  
-							  <div class="add-address-button">
-								<a href="/Orderaddressadd" class="btn action__add-address">Add Address</a>
-							  </div>
+									<div id="messageContainer" style="color: red;"></div>
+								
+									<br><h5 class="text-danger">Discount: ₹ <span id="discountValue">0.00</span></h5>
+									<h5>Total Price: <span id="total-price2">
+											<%= totalsum %>
+										</span></h5>
+										</div>
+										<br>
+										<button id="deleteCouponBtn" type="button" class="btn btn-danger" onclick="deleteCoupon()">Delete Coupon</button>
+										<a href="/userCouponShow" id="availableCouponsLink">
+											<button class="btn btn-primary" type="button" id="availableCouponsButton">Available Coupons</button>
+										</a>
+									</div>
+									</div>
+								</div>
+							</div>
 						</div>
-						<% } else { %>
-						  <p>No shipping information available.</p>
-						  <% } %>
-					  </div>
-	
-  
-					</div>
-				  </div>
-
-
-		        <div class="col-md-6">
-
-		          <div class="row mb-5">
-		            <div class="col-md-12">
-		              <h2 class="h3 mb-3 text-black">Coupon Code</h2>
-		              <div class="p-3 p-lg-5 border bg-white">
-
-		                <label for="c_code" class="text-black mb-3">Enter your coupon code if you have one</label>
-		                <div class="input-group w-75 couponcode-wrap">
-		                  <input type="text" class="form-control me-2" id="c_code" placeholder="Coupon Code" aria-label="Coupon Code" aria-describedby="button-addon2">
-		                  <div class="input-group-append">
-		                    <button class="btn btn-black btn-sm" type="button" id="button-addon2">Apply</button>
-		                  </div>
-		                </div>
-
-		              </div>
-		            </div>
-		          </div>
-
-		          <div class="row mb-5">
-		            <div class="col-md-12">
-		              <h2 class="h3 mb-3 text-black">Your Order</h2>
-		              <div class="p-3 p-lg-5 border bg-white">
-                   
-		                <table class="table site-block-order-table mb-5">
-		                  <thead>
-		                    <th>Product</th>
-		                    <th>Total</th>
-		                  </thead>
-                      <% checkout.forEach((product, index)=> { %>
-		                  <tbody>
-                      
-		                    <tr>
-		                      <td> <%= product.productname %><strong class="mx-2">x</strong> <%= product.quantity%></td>
-		                      <td>₹<%= product.price %></td>
-		                    </tr>
-							
-		                    <!-- <tr>
-		                      <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-		                      <td class="text-black font-weight-bold"><strong>$350.00</strong></td>
-		                    </tr> -->
-                    
-		                  </tbody>
-                      <% }); %>
-		                </table>
+					
+						<!-- Payment Method Section -->
+					<!-- Payment Method Section -->
+<div class="row mb-5">
+    <div class="col-md-12">
+        <h2 class="h3 mb-3 text-black">Payment Method</h2>
+        <div class="p-3 p-lg-5 border bg-white">
+            <form action="/Checkoutpost" method="POST">
+                <!-- Payment method options and form fields here -->
+                <div class="form-group">
+                    <label for="paymentMethod">Payment Method:</label>
                   
-		                <div class="border p-3 mb-3">
-		                <!-- <h3 class="h6 mb-0"><a class="d-block" data-bs-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank">Cash on Delivery</a></h3>
-						 -->
-						 <div class="form-group">
-							<label for="paymentMethod">Payment Method:</label>
-							<select class="form-control" id="paymentMethod" name="paymentMethod" required>
-							   <option value="Cash on Delivery">Cash on Delivery</option>
-							   <option value="credit-card">Credit Card</option>
-							</select>
-						 </div>
-		                <!-- <div class="border p-3 mb-3">
-		                  <h3 class="h6 mb-0"><a class="d-block" data-bs-toggle="collapse" href="#collapsecheque" role="button" aria-expanded="false" aria-controls="collapsecheque">Cheque Payment</a></h3>
+                        <select class="form-control" id="paymentMethod" name="paymentMethod" required>
+							<% if (totalsum <= 1000) { %>
+							<option selected value="Cash on Delivery">Cash on Delivery</option>
+							<% } else { %>
+								<!-- Display a message or an alternative payment method for orders over 1000 -->
+								<p class="text-danger">COD is not available for orders over 1000 rupees. Please choose an alternative payment method.</p>
+								<!-- You can provide other payment options here if needed -->
+							<% } %>
+							<option id="credit-card" value="credit-card">Credit Card</option>
+                        </select>
+                  
+                </div>
+                <br>
+                <br>
+                <div class="form-group">
+                    <button id="placeOrderButton" class="btn btn-black btn-lg py-3 btn-block" onclick="placeOrder()">Place Order</button>
+                </div>
+            </form>
+            <button type="button" class="btn btn-black btn-lg py-3 btn-block" id="rzp-button1" style="display: none;">
+                Razor Pay
+            </button>
+        </div>
+    </div>
+</div>
 
-		                  <div class="collapse" id="collapsecheque">
-		                    <div class="py-2">
-		                      <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-		                    </div>
-		                  </div>
-		                </div>
 
-		                <div class="border p-3 mb-5">
-		                  <h3 class="h6 mb-0"><a class="d-block" data-bs-toggle="collapse" href="#collapsepaypal" role="button" aria-expanded="false" aria-controls="collapsepaypal">Paypal</a></h3>
 
-		                  <div class="collapse" id="collapsepaypal">
-		                    <div class="py-2">
-		                      <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-		                    </div>
-		                  </div>
-		                </div>	 -->
+	<!-- Start Footer Section -->
+	<footer class="footer-section">
+		<div class="container relative">
 
-		                <div class="form-group">
-		                  <button class="btn btn-black btn-lg py-3 btn-block" onclick="window.location='thankyou.html'">Place Order</button>
-		                </div>
-                  </form>
-		              </div>
-		            </div>
-		          </div>
-				  
-		        </div>
-		      </div>
-		      <!-- </form> -->
-		    </div>
-			
-		  </div>
 
-		  
 
-		<!-- Start Footer Section -->
-		<footer class="footer-section">
-			<div class="container relative">
 
-				
-				
+			<div class="row g-5 mb-5">
+				<div class="col-lg-4">
+					<div class="mb-4 footer-logo-wrap"><a href="#" class="footer-logo"> <span>ℍ𝕆ℝ𝕀ℤ𝕆ℕ
+								𝕄𝕆𝔹𝕀𝕃𝔼𝕊</span></a></div>
+					<p class="mb-4">Discover the pinnacle of mobile technology at HorizonMobiles. Find your perfect
+						smartphone among sleek designs and powerful features. Redefine your mobile experience with
+						us. Welcome to a new era in communication!</p>
 
-				<div class="row g-5 mb-5">
-					<div class="col-lg-4">
-						<div class="mb-4 footer-logo-wrap"><a href="#" class="footer-logo"> <span>ℍ𝕆ℝ𝕀ℤ𝕆ℕ 𝕄𝕆𝔹𝕀𝕃𝔼𝕊</span></a></div>
-						<p class="mb-4">Discover the pinnacle of mobile technology at HorizonMobiles.  Find your perfect smartphone among sleek designs and powerful features. Redefine your mobile experience with us. Welcome to a new era in communication!</p>
-
-						<ul class="list-unstyled custom-social">
-							<li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
-							<li><a href="#"><span class="fa fa-brands fa-twitter"></span></a></li>
-							<li><a href="#"><span class="fa fa-brands fa-instagram"></span></a></li>
-							<li><a href="#"><span class="fa fa-brands fa-linkedin"></span></a></li>
-						</ul>
-					</div>
-
-					<div class="col-lg-8">
-						<div class="row links-wrap">
-							<div class="col-6 col-sm-6 col-md-3">
-								<ul class="list-unstyled">
-									<li><a href="#">About us</a></li>
-									<li><a href="#">Services</a></li>
-									<li><a href="#">Blog</a></li>
-									<li><a href="#">Contact us</a></li>
-								</ul>
-							</div>
-
-							<div class="col-6 col-sm-6 col-md-3">
-								<ul class="list-unstyled">
-									<li><a href="#">Support</a></li>
-									<li><a href="#">Knowledge base</a></li>
-									<li><a href="#">Live chat</a></li>
-								</ul>
-							</div>
-
-							<div class="col-6 col-sm-6 col-md-3">
-								<ul class="list-unstyled">
-									<li><a href="#">Jobs</a></li>
-									<li><a href="#">Our team</a></li>
-									<li><a href="#">Leadership</a></li>
-									<li><a href="#">Privacy Policy</a></li>
-								</ul>
-							</div>
-
-							
-						</div>
-					</div>
-
+					<ul class="list-unstyled custom-social">
+						<li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
+						<li><a href="#"><span class="fa fa-brands fa-twitter"></span></a></li>
+						<li><a href="#"><span class="fa fa-brands fa-instagram"></span></a></li>
+						<li><a href="#"><span class="fa fa-brands fa-linkedin"></span></a></li>
+					</ul>
 				</div>
 
-				<div class="border-top copyright">
-					<div class="row pt-4">
-						<div class="col-lg-6">
-							<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed  by <a href="https://untree.co">𝐀𝐍𝐒𝐈𝐅𝐀𝐋𝐈</a> Distributed By <a hreff="https://themewagon.com">ℍ𝕆ℝ𝕀ℤ𝕆ℕ 𝕄𝕆𝔹𝕀𝕃𝔼𝕊</a>  <!-- License information: https://untree.co/license/ -->
-            </p>
+				<div class="col-lg-8">
+					<div class="row links-wrap">
+						<div class="col-6 col-sm-6 col-md-3">
+							<ul class="list-unstyled">
+								<li><a href="#">About us</a></li>
+								<li><a href="#">Services</a></li>
+								<li><a href="#">Blog</a></li>
+								<li><a href="#">Contact us</a></li>
+							</ul>
 						</div>
 
-						<div class="col-lg-6 text-center text-lg-end">
-							<ul class="list-unstyled d-inline-flex ms-auto">
-								<li class="me-4"><a href="#">Terms &amp; Conditions</a></li>
+						<div class="col-6 col-sm-6 col-md-3">
+							<ul class="list-unstyled">
+								<li><a href="#">Support</a></li>
+								<li><a href="#">Knowledge base</a></li>
+								<li><a href="#">Live chat</a></li>
+							</ul>
+						</div>
+
+						<div class="col-6 col-sm-6 col-md-3">
+							<ul class="list-unstyled">
+								<li><a href="#">Jobs</a></li>
+								<li><a href="#">Our team</a></li>
+								<li><a href="#">Leadership</a></li>
 								<li><a href="#">Privacy Policy</a></li>
 							</ul>
 						</div>
 
+
 					</div>
 				</div>
 
 			</div>
-		</footer>
-		<!-- End Footer Section -->	
+
+			<div class="border-top copyright">
+				<div class="row pt-4">
+					<div class="col-lg-6">
+						<p class="mb-2 text-center text-lg-start">Copyright &copy;
+							<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash;
+							Designed by <a href="https://untree.co">𝐀𝐍𝐒𝐈𝐅𝐀𝐋𝐈</a> Distributed By <a
+								hreff="https://themewagon.com">ℍ𝕆ℝ𝕀ℤ𝕆ℕ 𝕄𝕆𝔹𝕀𝕃𝔼𝕊</a>
+							<!-- License information: https://untree.co/license/ -->
+						</p>
+					</div>
+
+					<div class="col-lg-6 text-center text-lg-end">
+						<ul class="list-unstyled d-inline-flex ms-auto">
+							<li class="me-4"><a href="#">Terms &amp; Conditions</a></li>
+							<li><a href="#">Privacy Policy</a></li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</footer>
+	<span id="price" data-totalprice="<%= totalsum %>"></span>
 
 
-		<script src="js/bootstrap.bundle.min.js"></script>
-		<script src="js/tiny-slider.js"></script>
-		<script src="js/custom.js"></script>
-	</body>
+	<!-- Add this script after your existing scripts for delete coupon -->
+	<script>
+	
+
+
+		  function deleteCoupon() {
+        // Make an AJAX request to the server to delete the coupon
+		document.getElementById('coupencode').value = '';
+		fetch('/deleteCoupon', {
+            method: 'POST',
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Reset the alreadyUsedCoupon flag
+                alreadyUsedCoupon = false;
+
+                // Update the UI to show original prices
+                document.getElementById('discountValue').innerText = '0.00';
+                document.getElementById('total-price2').innerText = '<%= totalsum %>';
+                document.getElementById('messageContainer').innerText = 'Coupon deleted successfully.';
+
+                // Clear the session coupon information
+                // This assumes you are using sessions to store coupon information
+                // Adjust this part based on your session implementation
+                delete window.sessionStorage.coupon;
+                delete window.sessionStorage.coupencode;
+            } else {
+                // Display an error message if deletion fails
+                document.getElementById('messageContainer').innerText = 'Failed to delete coupon.';
+            }
+        })
+        .catch(error => {
+            console.error('Error deleting coupon:', error);
+        });
+    }
+</script>
+	
+
+	<!-- End Footer Section -->
+	<script>
+
+
+/////////////remove copuon 
+
+
+		let alreadyUsedCoupon = false;
+		let overallTotalPrice; // Declare a global variable to store the overall total price
+		async function applyCoupon(totalPrice) {
+
+			const messageContainer = document.getElementById('messageContainer');
+			if (alreadyUsedCoupon) {
+				messageContainer.textContent = 'Coupon already applied.';
+				return;
+			}
+			const coupencode = document.getElementsByName('coupencode')[0].value;
+			try {
+				console.log(coupencode, 'couponcode');
+				const response = await fetch('/coupencheck', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ coupencode }),
+				});
+				if (!response.ok) {
+					messageContainer.textContent = `Invalid entryss`;
+					setTimeout(() => {
+						messageContainer.textContent = ""
+					}, 2000);
+					return;
+				}
+				const data = await response.json();
+				if (data.success) {
+					if (data.success) {
+						console.log('inside sucess');
+						const discountValue = data.discount || 0;
+						const amountLimit = data.amount || 0;
+
+						// Check if the total amount is greater than the discount
+						if (totalPrice > discountValue) {
+							if (totalPrice >= amountLimit) {
+								messageContainer.textContent = 'Coupon code is valid and not expired.';
+								setTimeout(() => {
+									messageContainer.textContent = "";
+								}, 2000);
+								console.log('inside to if');
+								overallTotalPrice = totalPrice - discountValue; // Update the global variable
+								document.getElementById('discountValue').textContent = discountValue.toFixed(2);
+								document.getElementById('total-price2').textContent = `₹${overallTotalPrice.toFixed(2)}`;
+								// document.getElementById('total-price3').textContent = ₹${overallTotalPrice.toFixed(2)};
+								alreadyUsedCoupon = true;
+								console.log('discount is',overallTotalPrice);
+							} else {
+								messageContainer.textContent = 'Your purchase amount is not greater than the coupon purchase amount. You are not eligible for this coupon.';
+								setTimeout(() => {
+									messageContainer.textContent = "";
+								}, 4000);
+							}
+						} else {
+							messageContainer.textContent = 'Coupon code is either expired or invalid: ' + data.message;
+							setTimeout(() => {
+								messageContainer.textContent = "";
+							}, 4000);
+						}
+					} else {
+						messageContainer.textContent = `Failed to apply coupon: `;
+						setTimeout(() => {
+							messageContainer.textContent = "";
+						}, 4000);
+						return;
+					}
+				}
+			} catch (error) {
+				messageContainer.textContent = ` Error applying coupon: ${error.message}`;
+				console.error('Error applying coupon:', error);
+			}
+		}
+
+		
+		document.getElementById('rzp-button1').onclick = function (e) {
+
+			let price = document.getElementById('price')
+		let orderprice = price.getAttribute('data-totalprice')
+		$(document).ready(function () {
+			console.log('ajx');
+			var settings = {
+				"url": "/create/orderId",
+				"method": "POST",
+				"timeout": 0,
+				"headers": {
+					"Content-Type": "application/json"
+				},
+				"data": JSON.stringify({
+					"amount": overallTotalPrice || orderprice
+				}),
+			};
+
+			//creates new orderId everytime
+			$.ajax(settings).done(function (response) {
+				console.log('done');
+				orderId = response.orderId;
+				orderprice = response.orderprice; // Assign response.orderprice to orderprice
+				ordresignature = response.signature
+				$("#rzp-button1").show();
+
+			}); 
+		});
+		console.log("price is", orderprice);
+		console.log("price is", overallTotalPrice);
+
+
+			console.log('btn clicked');
+			var options = {
+				"key": "rzp_test_V0Xy3c0YOvmOlE",
+				"amount": (overallTotalPrice || orderprice) * 100,
+				"currency": "INR",
+				"name": "ℍ𝕆ℝ𝕀ℤ𝕆ℕ 𝕄𝕆𝔹𝕀𝕃𝔼𝕊",
+				"description": "Online Payment",
+				"image": "",
+				"order_id": orderId,
+				"handler": function (response) {
+					// Create a form dynamically
+					var form = document.createElement('form');
+					form.method = 'post';
+					form.action = '/Checkoutpost';  // Replace with the URL you want to redirect to
+					// Create an input element to hold the payment ID
+					var paymentIdInput = document.createElement('input');
+					paymentIdInput.type = 'hidden';
+					paymentIdInput.name = 'razorpay_payment_id';
+					paymentIdInput.value = response.razorpay_payment_id;
+					// Add the input element to the form
+					form.appendChild(paymentIdInput);
+					// Add hidden input fields for payment mode and address details
+					var paymentModeInput = document.createElement('input');
+					paymentModeInput.type = 'hidden';
+					paymentModeInput.name = 'paymentMethod';
+					paymentModeInput.value = document.getElementById('paymentMethod').value; // Assumes the payment mode is selected through a dropdown
+					form.appendChild(paymentModeInput);
+					coupencode.value = document.getElementById('coupencode').value; // Assumes the payment mode is selected through a dropdown
+					form.appendChild(coupencode);
+					var selectedAddressInput = document.querySelector('input[name="shippingOption"]:checked');
+					if (selectedAddressInput) {
+						0.
+
+						var addressIdInput = document.createElement('input');
+						addressIdInput.type = 'hidden';
+						addressIdInput.name = 'shippingOption';
+						addressIdInput.value = selectedAddressInput.value;
+						form.appendChild(addressIdInput);
+					}
+					// Append the form to the body
+					document.body.appendChild(form);      // Submit the form
+					form.submit();
+				}
+			};
+			var rzp1 = new Razorpay(options);
+			rzp1.on('payment.failed', function (response) {
+				alert(response.error.code);
+				alert(response.error.description);
+				alert(response.error.source);
+				alert(response.error.step);
+				alert(response.error.reason);
+				alert(response.error.metadata.order_id);
+				alert(response.error.metadata.payment_id);
+			});
+			rzp1.open();
+			e.preventDefault();
+		}
+	</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			var cashOnDeliveryButton = document.getElementById("placeOrderButton");
+			var razorPayButton = document.getElementById("rzp-button1");
+			var paymentMethodSelect = document.getElementById("paymentMethod");
+
+			paymentMethodSelect.addEventListener("change", function () {
+				var selectedPaymentMethod = paymentMethodSelect.value;
+
+				if (selectedPaymentMethod === "Cash on Delivery") {
+					cashOnDeliveryButton.style.display = "block";
+					razorPayButton.style.display = "none";
+				} else if (selectedPaymentMethod === "credit-card") {
+					cashOnDeliveryButton.style.display = "none";
+					razorPayButton.style.display = "block";
+				}
+			});
+
+			// Initial check on page load
+			var initialPaymentMethod = paymentMethodSelect.value;
+			if (initialPaymentMethod === "Cash on Delivery") {
+				cashOnDeliveryButton.style.display = "block";
+				razorPayButton.style.display = "none";
+			} else if (initialPaymentMethod === "credit-card") {
+				cashOnDeliveryButton.style.display = "none";
+				razorPayButton.style.display = "block";
+			}
+		});
+
+		function placeOrder() {
+			// Add your logic to handle placing an order for Cash on Delivery
+			console.log("Placing order for Cash on Delivery");
+		}
+	</script>
+
+
+
+
+	<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
+	<script src="js/tiny-slider.js"></script>
+	<script src="js/custom.js"></script>
+
+
+</body>
 
 </html>

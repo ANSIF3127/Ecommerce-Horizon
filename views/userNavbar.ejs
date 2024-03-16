@@ -6,196 +6,219 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <!-- Bootstrap CSS link -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <!-- Font Awesome CSS link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-
+   <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap");
+ 
+    /* Your custom styles here */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 250px;
+      background-color: #0b0a0a;
+      padding-top: 25px;
+      color: white;
+      margin-top: 70px;
+    }
 
-        *,
-        ::after,
-        ::before {
-            margin: 0;
-            box-sizing: border-box;
-        }
+    .sidebar a {
+      font-size: 17px;
+      color: white;
+      text-decoration: none;
+    }
 
-        body {
-            font-family: "Lato", sans-serif;
-        }
+    .sidebar h2 {
+      color: rgb(248, 248, 249);
+      font-size:30px;
+    }
 
-        :root {
-            --bg-color: #020203;
-            --primary-color: #006ce0;
-            --border-radius: 6px;
-            --color: #2b82df;
-        }
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+    }
 
-        .sidebar {
-            height: 90vh; /* Adjusted height */
-            position: fixed;
-            top: 10%; /* Center vertically */
-            left: 0; /* Align to the left */
-            width: 300px;
-            background: var(--bg-color);
-            transition: left 0.5s ease;
-        }
+    .table-responsive {
+      /* Style to prevent table overflow */
+      overflow-x: auto;
+    }
 
-        .sidebar ul {
-            list-style: none;
-            margin-top: 5rem;
-            height: 100%;
-        }
+    .button:hover {
+      box-shadow: 0px 0px 5px #2196F3, /* Blue box shadow color */
+                  0px 0px 30px #2196F3,
+                  0px 0px 90px #2196F3;
+    }
 
-        .sidebar ul li {
-            margin-top: 1rem;
-            padding: 0.3rem;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
+    .button1:hover {
+      box-shadow: 0px 0px 5px #fe21a2,
+                   0px 0px 30px #fe21a2,
+                   0px 0px 90px #fe21a2;
+    }
 
-        .sidebar ul li.active {
-            background: var(--primary-color);
-            border-bottom-left-radius: var(--border-radius);
-            border-top-left-radius: var(--border-radius);
-            transition: background 0.5s linear;
-            box-shadow: rgba(20, 114, 238, 0.918) 0px 2px 10px 0px;
-        }
+    /* ////////////////////Toggle dark mode button//////////////////////// */
+.toggle-dark-theme {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+    z-index: 2;
+}
 
-        .sidebar li .icon {
-            margin-right: 1rem;
-            padding: 0.5rem;
-        }
+.toggle-dark-theme button {
+    width: 70px;
+    background-color: #ccc;
+    border-radius: 20px;
+    border: none;
+    position: relative;
+    padding: 4px;
+    cursor: pointer;
+}
 
-        .sidebar li a {
-            text-decoration: none;
-            font-size: 1.3rem;
-            color: white;
-            display: flex;
-            align-items: center;
-        }
+.toggle-dark-theme .icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: #32006a;
+    position: relative;
+    transition: all 0.5s ease;
+}
 
-        .sidebar li a:hover {
-            margin-left: 2px;
-            color: var(--color);
-        }
+.toggle-dark-theme .icon::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 400;
+    content: "\f186";
+    position: absolute;
+    color: #f5ecec;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+}
 
-        .close-icon {
-            color: white;
-            position: absolute;
-            top: 0;
-            right: 0;
-            font-size: 2.2rem;
-            margin: 1rem;
-            cursor: pointer;
-        }
+body.dark {
+    background-color: #252525; /* Dark mode background color */
+    color: #fff; /* Dark mode text color */
+}
 
-        .close-icon h2 {
-            color: aliceblue;
-            margin: 20px 0 10px;
-            /* Added space after heading and before items */
-            font-size: 1.5rem;
-        }
+/* Dark mode styles for sidebar */
+body.dark .sidebar {
+    background-color: #252525;
+    color: #fff;
+    border-right: 1px solid #555; /* Dark mode sidebar border color */
+}
 
-        .close-icon img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 1rem;
-        }
+body.dark .sidebar h2 {
+    color: #fcc288; /* Heading color in dark mode sidebar */
+}
 
-        .hamburger-menu {
-            position: absolute;
-            top: 0;
-            right: 0;
-            margin: 1rem;
-            font-size: 3rem;
-            color: #006ce0;
-            cursor: pointer;
-        }
+body.dark .sidebar a {
+    color: #0013f8; /* Link color in dark mode */
+}
 
-        body .toggle.sidebar {
-            left: -300px;
-        }
+/* Dark mode table styles */
+body.dark .main-content table {
+    border-color: #555; /* Dark mode table border color */
+}
 
-        body.toggle.section {
-            margin-left: 0;
-            width: 100%;
-        }
+body.dark .main-content th,
+body.dark .main-content td {
+    border-color: #444; /* Dark mode table cell border color */
+    color: #fff;
+}
 
-        .button:hover {
-            box-shadow: 0px 0px 5px #2196F3, /* Blue box shadow color */
-            0px 0px 30px #2196F3, 0px 0px 90px #2196F3;
-        }
+/* Dark mode styles for alternating row colors */
+body.dark .main-content tbody tr:nth-child(even) {
+    background-color: #353535; /* Dark mode alternate row color */
+    color: #fff;
+}
 
-        .button1:hover {
-            box-shadow: 0px 0px 5px #fe21a2, 0px 0px 30px #fe21a2, 0px 0px 90px #fe21a2;
-        }
+/* Dark mode styles for table header */
+body.dark .main-content thead {
+    background-color: #303030; /* Dark mode table header background color */
+}
 
-        /* Added styles for centering the table */
-        .table-container {
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+/* Dark mode toggle button styles */
+body.dark .toggle-dark-theme .icon {
+    transform: translateX(calc(100% + 10px));
+    background-color: yellow; /* Dark mode toggle button background color */
+}
+
+body.dark .toggle-dark-theme .icon::before {
+    color: #000;
+    content: "\f185";
+}
+.sidebar .nav-link {
+  margin-bottom: 20px; /* Adjust the value as needed for spacing */
+}
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    @media screen and (max-width: 600px) {
+      th, td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      th {
+        text-align: center;
+      }
+    }
     </style>
 </head>
 
 <body>
-
-    <div class="hamburger-menu">
-        <ion-icon name="menu-outline" id="hamburger-icon"></ion-icon>
-    </div>
-
-    <div class="sidebar" id="sidebars">
-        <div class="close-icon" id="close" onclick="closeNav()">
-            <div style="color:aliceblue">
-                <h2></h2>
-            </div>
+    <div class="container-fluid">
+        <div class="row">
+          <!-- Sidebar -->
+          <div class="col-md-3 sidebar">
+            <div style="color:aliceblue"><h2>ℍ𝕆ℝ𝕀ℤ𝕆ℕ 𝕄𝕆𝔹𝕀𝕃𝔼𝕊</h2></div>
             <br>
-            <ion-icon name="close-outline"></ion-icon>
-        </div>
-
-        <ul class="links">
-            <!-- Existing navigation items... -->
-
-            <!-- New Navigation Items with Bootstrap and Font Awesome -->
-            <li class="link">
-                <a href="/profile" class="nav-link button">
-                    <i class="fas fa-user icon"></i> Profile
-                </a>
-            </li>
-            <li class="link">
-                <a href="/address" class="nav-link button">
-                    <i class="fas fa-address-book icon"></i> Address
-                </a>
-            </li>
-            <li class="link">
-                <a href="/UserOrder" class="nav-link button">
-                    <i class="fas fa-shopping-cart icon"></i> Orders
-                </a>
-            </li>
-            <li class="link">
-                <a href="/Home" class="nav-link button">
-                    <i class="fas fa-shopping-bag icon"></i> Shop
-                </a>
-            </li>
-            <br>
-            <br>
-            <br>
-            <br>
-
-            <li class="link">
-                <a id="logout-button" href="/" onclick="confirmDelete()" class="nav-link button1">
-                    <i class="fas fa-sign-out-alt icon"></i> Logout
-                </a>
-            </li>
-        </ul>
-    </div>
+            <ul class="nav flex-column ">
+              <li class="nav-item button">
+                <a class="nav-link" href="/profile"><i class="fas fa-home"></i> Profile</a>
+              </li>
+              <li class="nav-item button">
+                <a class="nav-link" href="/address"><i class="fas fa-users"></i>Address</a>
+              </li>
+              <li class="nav-item button">
+                <a class="nav-link" href="/UserOrder"><i class="fas fa-shopping-cart"></i> Orders Management</a>
+              </li>
+              <li class="nav-item button">
+                <a class="nav-link" href="/WalletHistory"><i class="fas fa-shopping-cart"></i> Wallet History</a>
+              </li>
+              <li class="nav-item button">
+                <a class="nav-link" href="/Home"><i class="fas fa-list"></i> Shop</a>
+              </li>
+              
+              <br>
+              <br>
+              <li class="nav-item button1">
+                <a id="logout-button" class="nav-link button1" href="/"><i class="fas fa-sign-out-alt"></i> Logout</a>
+              </li>
+              <!-- Add more sidebar links as needed -->
+            </ul>
+          </div>
+      
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

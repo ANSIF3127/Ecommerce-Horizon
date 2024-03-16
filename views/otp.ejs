@@ -6,6 +6,7 @@
   <title>OTP Verification</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <style media="screen">
     body {
       background-image: url('/image/back.png');
@@ -97,9 +98,25 @@
     </div>
   </div>
 
+  <% if (typeof enteredOtp !== 'undefined' && typeof otp !== 'undefined' && enteredOtp === otp) { %>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        Swal.fire({
+          title: 'Success!',
+          text: 'OTP verification successful. Redirecting...',
+          icon: 'success',
+          timer: 1000, // Adjust the timer as needed
+          showConfirmButton: false
+        }).then(function () {
+          window.location.href = '/UserLogin';
+        });
+      });
+    </script>
+  <% } %>
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      var countdown =   60;
+      var countdown = 30;
 
       function startTimer() {
         document.getElementById('timer').style.display = 'block';
@@ -107,23 +124,29 @@
           countdown--;
           document.getElementById('countdown').textContent = countdown;
 
-          if (countdown <=   0) {
+          if (countdown <= 0) {
             clearInterval(timer);
             document.getElementById('countdown').style.display = 'none';
             document.getElementById('resendBtn').style.display = 'block';
           }
-        },   1000);
+        }, 1000);
       }
 
       startTimer();
 
-    
+      // Hide the resend button initially
+      document.getElementById('resendBtn').style.display = 'none';
+
+      // Function to show the resend button when needed
+      function showResendButton() {
+        document.getElementById('resendBtn').style.display = 'block';
+      }
+
+      // Set a timeout to show the resend button after the countdown
+      setTimeout(showResendButton, countdown * 1000);
+
     });
   </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

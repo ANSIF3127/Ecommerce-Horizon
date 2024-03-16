@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Category Page</title>
-  
+
   <!-- SweetAlert CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
 
   <!-- Bootstrap CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.17.0/font/bootstrap-icons.css">
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
@@ -25,11 +26,14 @@
       background-color: #0b0a0a;
       padding-top: 25px;
       color: white;
-     
+
     }
+
     .sidebar .nav-link {
-  margin-bottom: 20px; /* Adjust the value as needed for spacing */
-}
+      margin-bottom: 20px;
+      /* Adjust the value as needed for spacing */
+    }
+
     .sidebar a {
       font-size: 17px;
       color: white;
@@ -38,7 +42,7 @@
 
     .sidebar h2 {
       color: rgb(248, 248, 249);
-      font-size:30px;
+      font-size: 30px;
     }
 
     .main-content {
@@ -52,193 +56,344 @@
     }
 
     .button:hover {
-      box-shadow: 0px 0px 5px #2196F3, /* Blue box shadow color */
-                  0px 0px 30px #2196F3,
-                  0px 0px 90px #2196F3;
+      box-shadow: 0px 0px 5px #2196F3,
+        /* Blue box shadow color */
+        0px 0px 10px #7cc0f8,
+        0px 0px 90px #5faae8;
     }
 
     .button1:hover {
       box-shadow: 0px 0px 5px #fe21a2,
-                   0px 0px 30px #fe21a2,
-                   0px 0px 90px #fe21a2;
+        0px 0px 30px #fe21a2,
+        0px 0px 90px #fe21a2;
     }
 
     /* ////////////////////Toggle dark mode button//////////////////////// */
-.toggle-dark-theme {
-    position: fixed;
-    top: 30px;
-    right: 30px;
-    cursor: pointer;
-    z-index: 2;
-}
+    .toggle-dark-theme {
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      cursor: pointer;
+      z-index: 2;
+    }
 
-.toggle-dark-theme button {
-    width: 70px;
-    background-color: #ccc;
-    border-radius: 20px;
-    border: none;
-    position: relative;
-    padding: 4px;
-    cursor: pointer;
-}
+    .toggle-dark-theme button {
+      width: 70px;
+      background-color: #ccc;
+      border-radius: 20px;
+      border: none;
+      position: relative;
+      padding: 4px;
+      cursor: pointer;
+    }
 
-.toggle-dark-theme .icon {
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    background-color: #32006a;
-    position: relative;
-    transition: all 0.5s ease;
-}
+    .toggle-dark-theme .icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background-color: #32006a;
+      position: relative;
+      transition: all 0.5s ease;
+    }
 
-.toggle-dark-theme .icon::before {
-    font-family: "Font Awesome 6 Free";
-    font-weight: 400;
-    content: "\f186";
-    position: absolute;
-    color: #f5ecec;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.5s ease;
-}
+    .toggle-dark-theme .icon::before {
+      font-family: "Font Awesome 6 Free";
+      font-weight: 400;
+      content: "\f186";
+      position: absolute;
+      color: #f5ecec;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.5s ease;
+    }
 
-body.dark {
-    background-color: #252525; /* Dark mode background color */
-    color: #fff; /* Dark mode text color */
-}
+    body.dark {
+      background-color: #252525;
+      /* Dark mode background color */
+      color: #fff;
+      /* Dark mode text color */
+    }
 
-/* Dark mode styles for sidebar */
-body.dark .sidebar {
-    background-color: #252525;
-    color: #fff;
-    border-right: 1px solid #555; /* Dark mode sidebar border color */
-}
+    /* Dark mode styles for sidebar */
+    body.dark .sidebar {
+      background-color: #252525;
+      color: #fff;
+      border-right: 1px solid #555;
+      /* Dark mode sidebar border color */
+    }
 
-body.dark .sidebar h2 {
-    color: #fcc288; /* Heading color in dark mode sidebar */
-}
+    body.dark .sidebar h2 {
+      color: #fcc288;
+      /* Heading color in dark mode sidebar */
+    }
 
-body.dark .sidebar a {
-    color: #0013f8; /* Link color in dark mode */
-}
+    body.dark .sidebar a {
+      color: #0013f8;
+      /* Link color in dark mode */
+    }
 
-/* Dark mode table styles */
-body.dark .main-content table {
-    border-color: #555; /* Dark mode table border color */
-}
+    /* Dark mode table styles */
+    body.dark .main-content table {
+      border-color: #555;
+      /* Dark mode table border color */
+    }
 
-body.dark .main-content th,
-body.dark .main-content td {
-    border-color: #444; /* Dark mode table cell border color */
-    color: #fff;
-}
+    body.dark .main-content th,
+    body.dark .main-content td {
+      border-color: #444;
+      /* Dark mode table cell border color */
+      color: #fff;
+    }
 
-/* Dark mode styles for alternating row colors */
-body.dark .main-content tbody tr:nth-child(even) {
-    background-color: #353535; /* Dark mode alternate row color */
-    color: #fff;
-}
+    /* Dark mode styles for alternating row colors */
+    body.dark .main-content tbody tr:nth-child(even) {
+      background-color: #353535;
+      /* Dark mode alternate row color */
+      color: #fff;
+    }
 
-/* Dark mode styles for table header */
-body.dark .main-content thead {
-    background-color: #303030; /* Dark mode table header background color */
-}
+    /* Dark mode styles for table header */
+    body.dark .main-content thead {
+      background-color: #303030;
+      /* Dark mode table header background color */
+    }
 
-/* Dark mode toggle button styles */
-body.dark .toggle-dark-theme .icon {
-    transform: translateX(calc(100% + 10px));
-    background-color: yellow; /* Dark mode toggle button background color */
-}
+    /* Dark mode toggle button styles */
+    body.dark .toggle-dark-theme .icon {
+      transform: translateX(calc(100% + 10px));
+      background-color: yellow;
+      /* Dark mode toggle button background color */
+    }
 
-body.dark .toggle-dark-theme .icon::before {
-    color: #000;
-    content: "\f185";
-}
+    body.dark .toggle-dark-theme .icon::before {
+      color: #000;
+      content: "\f185";
+    }
   </style>
 </head>
+
 <body>
 
-<div class="container-fluid">
-  <div class="row">
-    <!-- Sidebar -->
-    <div class="col-md-3 sidebar">
-      <div style="color:aliceblue"><h2>ℍ𝕆ℝ𝕀ℤ𝕆ℕ 𝕄𝕆𝔹𝕀𝕃𝔼𝕊</h2></div>
-      <br>
-      <ul class="nav flex-column ">
-        <li class="nav-item button">
-          <a class="nav-link" href="/admin_Dashboard"><i class="fas fa-home"></i> Dashboard</a>
-        </li>
-        <li class="nav-item button">
-          <a class="nav-link" href="/userManagement"><i class="fas fa-users"></i> User Management</a>
-        </li>
-        <li class="nav-item button">
-          <a class="nav-link" href="/productManagement"><i class="fas fa-shopping-cart"></i> Product Management</a>
-        </li>
-        <li class="nav-item button">
-          <a class="nav-link" href="/Category"><i class="fas fa-list"></i> Category</a>
-        </li>
-        <li class="nav-item button">
-          <a class="nav-link" href="/adminOrder"><i class="fas fa-shopping-bag"></i> Order</a>
-        </li>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3 sidebar">
+        <div style="color:aliceblue"><h2>ℍ𝕆ℝ𝕀ℤ𝕆ℕ 𝕄𝕆𝔹𝕀𝕃𝔼𝕊</h2></div>
         <br>
-        <br>
-        <li class="nav-item button1">
-          <a id="logout-button" class="nav-link button1" href="/admin_Login"><i class="fas fa-sign-out-alt"></i> Logout</a>
-        </li>
-        <!-- Add more sidebar links as needed -->
-      </ul>
-    </div>
- 
+        <ul class="nav flex-column">
+          <li class="nav-item button">
+            <a class="nav-link" href="/admin_Dashboard"><i class="fas fa-home"></i> Dashboard</a>
+          </li>
+          <li class="nav-item button">
+            <a class="nav-link" href="/userManagement"><i class="fas fa-users"></i> User Management</a>
+          </li>
+          <li class="nav-item button">
+            <a class="nav-link" href="/productManagement"><i class="fas fa-shopping-cart"></i> Product Management</a>
+          </li>
+          <li class="nav-item button">
+            <a class="nav-link" href="/Category"><i class="fas fa-list"></i> Category</a>
+          </li>
+          <li class="nav-item button">
+            <a class="nav-link" href="/Coupons"><i class="fas fa-tags"></i> Coupon</a>
+          </li>
+          <li class="nav-item button">
+            <a class="nav-link" href="/adminOrder"><i class="fas fa-shopping-bag"></i> Order</a>
+          </li>
+          <li class="nav-item button">
+            <a class="nav-link" href="/Sales"><i class="fas fa-chart-line"></i> Sales</a>
+          </li>
+          <li class="nav-item button">
+            <a class="nav-link" href="/productOffer"><i class="fas fa-percent"></i> Product Offer</a>
+          </li>
+          <br>
+          <br>
+          <li class="nav-item button1">
+            <a id="logout-button" class="nav-link button1" href="/admin_Login"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </li>
+          <!-- Add more sidebar links as needed -->
+        </ul>
+      </div>
 
- 
-            <!-- Content area -->
-            <div class="col-md-9 main-content">
-                
-                    <h1>Main Content</h1>
-                    <p>Welcome to your dashboard!</p>   
-                <!-- ... Main content -->
+
+
+      <!-- Content area -->
+      <div class="col-md-9 main-content">
+
+        <h1>Main Content</h1>
+        <p>Welcome to your dashboard!</p>
+        <!-- ... Main content -->
+
+        <!-- Area Chart -->
+        <div class>
+          <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary">
+                Orders Overview
+              </h6>
+
+
             </div>
+            <!-- Card Body -->
+            <div 
+            class="card-body">
+              <label for="chartSelector">Select Chart Type:</label>
+              <select class="form-control" id="chartSelector" onchange="updateChart()">
+                <option value="mychart1">Weekly Orders</option>
+                <option value="mychart2">Monthly Orders</option>
+                <option value="mychart3">Yearly Orders</option>
+              </select>
+              <div class="chart-area">
+                <!-- Chart code start here -->
+
+                <div class="content" style="display: flex; justify-content: space-between;">
+                  <div class="content" style="display: flex; justify-content: space-between;">
+                    <div class="chart-container">
+                        <canvas id="mychart1" width="400" height="200" data-dates="<%= JSON.stringify(dates) %>"
+                            data-dailyOrder="<%=JSON.stringify(orderCounts)%>"></canvas>
+                        <canvas id="mychart2" width="400" height="400"
+                            data-monthly="<%= JSON.stringify(monthdata) %>"></canvas>
+                        <canvas id="mychart3" width="400" height="400"
+                            data-yearlyOrders="<%=JSON.stringify(totalOrderCount3)%>"></canvas>
+                    </div>
+                </div>
+                <!-- Chart code End here -->
+                <!-- 
+                  <canvas id="myAreaChart"></canvas> -->
+
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+
+  <!-- Table for Top Selling Products -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+      <h6 class="m-0 font-weight-bold text-primary">
+        Top Selling Products
+      </h6>
     </div>
-    <div onclick="toggleDark()" class="toggle-dark-theme">
-        <button>
-            <div class="icon"></div>
-        </button>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="topSellingProductsTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Total Quantity Sold</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (let i = 0; i < productNames.length; i++) { %>
+              <tr>
+                <td><%= productNames[i] %></td>
+                <td><%= sellingQuantities[i] %></td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
+
+  <!-- Table for Top Selling Categories -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+      <h6 class="m-0 font-weight-bold text-primary">
+        Top Selling Categories
+      </h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="topSellingCategoriesTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Category Name</th>
+              <th>Total Quantity Sold</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% topSellingCategories.forEach(category => { %>
+              <tr>
+                <td><%= category.category %></td>
+                <td><%= category.totalQuantity %></td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+   <!-- Date Inputs and Buttons -->
+   <div class="card-body">
+    <div class="chart-pie pt-4 pb-2">
+        <div class="">
+            <div class="col">
+                <input type="date" name="startingdate" id="startingDate" class="form-control">
+            </div>
+            <span>Starting Date</span>
+            <div class="col">
+                <input type="date" name="endingdate" id="endingDate" class="form-control">
+            </div>
+            <span>Ending Date</span>
+        </div>
+        <br>
+        <button class="btn btn-primary btn-block mb-3" onclick="generateReport('pdf')">PDF Report</button>
+        <button class="btn btn-primary btn-block" onclick="generateReport('excel')">Excel Report</button>
+    </div>
+</div>
+</div>
+</div>
+</div>  
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 
-    <!-- Bootstrap JS and Font Awesome -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <!-- Bootstrap JS and Font Awesome -->
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
       <!-- sweet alert-->
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script>
-        function toggleDark() {
-            const body = document.querySelector("body");
-            if (body.classList.contains("dark")) {
-                body.classList.remove("dark");
-                localStorage.setItem("theme", "light");
-            } else {
-                body.classList.add("dark");
-                localStorage.setItem("theme", "dark");
+      
+      <script>
+        function generateReport(reportType) {
+            const startingDate = document.getElementById('startingDate').value;
+            const endingDate = document.getElementById('endingDate').value;
+            if (reportType === 'pdf') {
+                window.location.href = `/generate-pdf?startingdate=${startingDate}&endingdate=${endingDate}`;
+            } else if (reportType === 'excel') {
+                window.location.href = `/salesreport?startingdate=${startingDate}&endingdate=${endingDate}`
             }
+        }
+    </script>
+      <script>
+        function toggleDark() {
+          const body = document.querySelector("body");
+          if (body.classList.contains("dark")) {
+            body.classList.remove("dark");
+            localStorage.setItem("theme", "light");
+          } else {
+            body.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+          }
         }
 
         if (localStorage.getItem("theme") === "dark") {
-            document.body.classList.add("dark");
+          document.body.classList.add("dark");
         }
-    </script>
-     <script>
+      </script>
+      <script>
         ///////////////logout/////////////////////////
         document.addEventListener("DOMContentLoaded", function () {
           const logoutButton = document.getElementById("logout-button");
-      
+
           if (logoutButton) {
             logoutButton.addEventListener("click", function (e) {
               e.preventDefault(); // Prevent the default link behavior
-      
+
               // Use SweetAlert2 for confirmation
               Swal.fire({
                 title: "Are you sure?",
@@ -256,6 +411,189 @@ body.dark .toggle-dark-theme .icon::before {
             });
           }
         });
-      </script>  
+      </script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+          const chart1Container = document.querySelector('#mychart1');
+          const rawDates = chart1Container.getAttribute('data-dates');
+          const dates = JSON.parse(rawDates);
+          const rawDailyOrders = chart1Container.getAttribute('data-dailyOrder');
+          const dailyOrders = JSON.parse(rawDailyOrders);
+
+          const orderEndDate = moment(dates[dates.length - 1]); // Use the last order date as the end date
+          const lastSevenDays = [];
+          let orders = [];
+
+          // Generate labels for the last 7 days from the current date
+          for (let i = 6; i >= 0; i--) {
+            const date = orderEndDate.clone().subtract(i, 'days').format('YYYY-MM-DD');
+            let index = dates.indexOf(date);
+            if (index !== -1) {
+              orders.push(dailyOrders[index]);
+            } else {
+              orders.push(0);
+            }
+            lastSevenDays.push(date);
+          }
+
+          const ctx1 = document.getElementById('mychart1').getContext('2d');
+          const masspopchart1 = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+              labels: lastSevenDays,
+              datasets: [{
+                label: 'Weekly Orders',
+                data: orders,
+                backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)'],
+                barThickness: 20
+              }]
+            },
+            options: {
+              animation: {
+                duration: 2000,
+                easing: 'easeInOutQuart',
+                onProgress: function (animation) {
+                  console.log("progress", animation.progress);
+                },
+                onComplete: function (animation) {
+                  console.log('Animation complete');
+                }
+              }
+            }
+          });
+
+
+          // Chart 2
+
+
+
+          const chart2Container = document.querySelector('#mychart2');
+          document.getElementById("mychart2").style.display = "none";
+          const rawMonthlyOrders = chart2Container.getAttribute('data-monthly');
+          const monthlyData = JSON.parse(rawMonthlyOrders);
+
+          const currentDate = new Date();
+          const currentYear1 = currentDate.getFullYear();
+          const currentMonth = currentDate.getMonth() + 1;
+
+          const monthlyLabels = Array.from({ length: 12 }, (_, index) => {
+            const year = currentMonth + index > 12 ? currentYear1 + 1 : currentYear1;
+            const month = (currentMonth + index) % 12 || 12;
+            return `${year}-${month.toString().padStart(2, '0')}`;
+          });
+
+          const ctx2 = document.getElementById('mychart2').getContext('2d');
+
+          let masspopchart2 = new Chart(ctx2, {
+            type: 'polarArea',
+            data: {
+              labels: monthlyLabels,
+              datasets: [{
+                label: 'Monthly Orders',
+                data: monthlyData,
+                backgroundColor: ['rgb(255, 205, 86)', 'rgb(54, 162, 235)',],
+                barThickness: 20
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              animation: {
+                duration: 2000,
+                easing: 'easeInOutQuart',
+                onProgress: function (animation) {
+                  console.log(animation.progress);
+                },
+                onComplete: function (animation) {
+                  console.log('Animation complete');
+                }
+              },
+              scales: {
+                x: {
+                  type: 'category',
+                  labels: monthlyLabels,
+                  ticks: {
+                    autoSkip: false,
+                    maxRotation: 45,
+                  }
+                },
+                y: {
+                  beginAtZero: true,
+                }
+              }
+            }
+          });
+
+          // Chart 3
+          const chart3Container = document.querySelector('#mychart3');
+          document.getElementById("mychart3").style.display = "none";
+          const rawYearlyOrders = chart3Container.getAttribute('data-yearlyOrders');
+          const yearlyOrders = rawYearlyOrders.split(',').map(Number);
+
+          const currentYear = new Date().getFullYear();
+
+          const yearlyLabels = Array.from({ length: 5 }, (_, index) => currentYear + index);
+
+          const ctx3 = document.getElementById('mychart3').getContext('2d');
+
+          let masspopchart3 = new Chart(ctx3, {
+            type: 'pie',
+            data: {
+              labels: yearlyLabels,
+              datasets: [{
+                label: 'Yearly Orders',
+
+                data: yearlyOrders,
+                backgroundColor: ['rgba(144, 238, 144, 20)', 'rgba(54, 162, 235, 0.2)'],
+                barThickness: 20
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              animation: {
+                duration: 2000,
+                easing: 'easeInOutQuart',
+                onProgress: function (animation) {
+                  console.log(animation.progress);
+                },
+                onComplete: function (animation) {
+                  console.log('Animation complete');
+                }
+              },
+              scales: {
+                x: {
+                  type: 'category',
+                  labels: yearlyLabels.map(String),
+                  ticks: {
+                    autoSkip: false,
+                    maxRotation: 45,
+                  }
+                },
+                y: {
+                  beginAtZero: true,
+                }
+              }
+            }
+          });
+        });
+
+        function updateChart() {
+          var selectedChart = document.getElementById("chartSelector").value;
+
+          // Hide all charts
+          document.getElementById("mychart1").style.display = "none";
+          document.getElementById("mychart2").style.display = "none";
+          document.getElementById("mychart3").style.display = "none";
+
+          // Show the selected chart
+          document.getElementById(selectedChart).style.display = "block";
+        }
+
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 </body>
+
 </html>

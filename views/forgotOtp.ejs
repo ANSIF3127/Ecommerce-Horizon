@@ -78,7 +78,7 @@
         <div class="col-md-6">
           <div class="otp-box text-center p-4 mt-md-5">
             <h3>Enter OTP</h3>
-            <form id="otpForm" action="/forgotOtp" method="post">
+            <form id="otpForm" action="/forgotpassword" method="post">
               <div id="otp-error" class="input-group justify-content-center">
                 <input type="text" name="otp" id="otp-input" class="form-control otp-input" maxlength="6" pattern="\d{6}" title="Please enter a  6-digit OTP" required>
                 <% if (typeof errorMessage !== 'undefined' && errorMessage) { %>

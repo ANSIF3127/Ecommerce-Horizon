@@ -1,4 +1,5 @@
 <%- include('nav') %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-csJFOw8qrW/A6ePOtUHjDEiJ+3yvkp6bV5ZO00l6NA5Ij78mH1+OYtBhoGG9cPkI" crossorigin="anonymous">
     <style>
         * {
             padding: 0;
@@ -153,8 +154,38 @@
         .buy-now:hover {
             opacity: 0.8;
         }
-       
+        .filter-search-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+    }
 
+    #filterDropdown {
+        margin-right: 1rem;
+    }
+    #searchBarContainer {
+    display: flex;
+    align-items: center;
+    margin: 1rem; /* Add margin for spacing */
+}
+
+#searchInput {
+    flex: 0.8; /* Adjust the flex value to control the width */
+    padding: 0.5rem;
+    margin-right: 0.5rem; /* Add margin between input and button */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#searchIcon {
+    padding: 0.5rem;
+    background-color: #ddd;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+ 
     </style>
     </head>
 
@@ -162,16 +193,21 @@
           <!-- Banner Image -->
     <img src="\image\hero_endframe__ov6ewwmbhiqq_large.jpg" alt="Banner Image" style="width: 100%;">
 
+
+
+   
         <h1 class="title-shop">SHOP</h1>
+        <div id="searchBarContainer">
+            <input type="text" id="searchInput" placeholder="Search by Product Name or Category">
+            <button id="searchIcon" onclick="performSearch()">&#128269;</button>
+        </div>
     
-        <form id="filterForm" method="get">
+         <!-- Filter Form -->
+
+         <form id="filterForm" method="get">
+            
             <div style="display: flex; align-items: center;">
-                <!-- <select id="categoryFilter" name="category">
-                    <option value="">All Categories</option>
-                    <% Categorie.forEach(category => { %>
-                        <option value="<%= category._id%> %>"><%= category.BrandName %></option>
-                    <% }) %>
-                </select> -->
+           
                 <input type="number" id="minPrice" name="minPrice" placeholder="Min Price">
                 <input type="number" id="maxPrice" name="maxPrice" placeholder="Max Price">
                 <select id="sortOrder" name="sortOrder">
@@ -191,18 +227,25 @@
                 </div>
             </a>
                 <div class="text-box">
+                   
                     <h2 class="item"><%= product.ProductName %></h2>
                     <h3 class="price">₹<%= product.Price %></h3>
 
                     <label for="item-<%= index + 1 %>-quantity"><%= product.Rating %>★ Rating</label>
 
+                   
                     <div class="action-buttons">
                         <a href="/addToCart/<%= product._id %>" class="add-to-cart">Add to Cart</a>
-
-
+                       
+                        
+                        
+                        <a href="/Wishlist/<%= product._id %>" class="add-to-cart" >Wish List 
+                          
+                        </a>
+                  
 
                         
-                        <a href="/checkout/<%= product._id %>" class="buy-now">Buy Now</a>
+                       
                     </div>  
                 </div>
             </div>
@@ -225,8 +268,25 @@
             <% } %>
           </div>
     </div>
+   
+    <script>
+        function performSearch() {
+            var searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            var products = document.querySelectorAll('.product');
+            products.forEach(function (product) {
+                var productName = product.querySelector('.item').innerText.toLowerCase();
+                var category = product.dataset.category.toLowerCase();
 
-       
+                if (productName.includes(searchQuery) || category.includes(searchQuery)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+    </script>
+   
+    </script>
     </body>
 
     </html>

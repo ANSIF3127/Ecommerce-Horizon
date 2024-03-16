@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Product Management</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
  <style>
     /* Add your custom styles here */
     body {
@@ -77,6 +77,20 @@
           <div id="cropper-container" class="mt-3 mb-5"></div>
         </div>
         <div class="error-message" id="imageError"></div>
+        <div>
+        
+          <br>
+          <% if (product.image && product.image.length> 0) { %>
+              <p style="color: white;">Previous Image(s):</p>
+              <% product.image.forEach((img, index)=> { %>
+                  <img src="<%= img %>" alt="Previous Image"
+                      style="max-width: 100px; max-height: 100px; margin-right: 10px;">
+                  <button class="remove-image btn btn-danger" data-image="<%= index %>"
+                      data-id="<%= product._id %>" type="button">Remove</button>
+                  <% }); %>
+                      <% } %>
+                            
+      </div>
       </div>
 
       <button type="submit" class="btn btn-primary">Update</button>
@@ -87,6 +101,43 @@
  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+
+<script>
+  //////////////////////////////image ///////////////////////////////////////
+  $(document).ready(function () {
+    // Handle the click event for the "Remove" button
+    $('.remove-image').on('click', function () {
+        var button = $(this); // Store reference to the button
+        console.log('remove');
+        var productId = button.data('id');
+        var imageIndex = button.data('image');
+
+        // Make an AJAX request to remove the image from the database
+        $.ajax({
+            url: '/remove-image', // Replace with the actual endpoint on your server
+            method: 'POST', // Use the appropriate HTTP method
+            data: {
+                productId: productId,
+                imageIndex: imageIndex
+            },
+            success: function (response) {
+                // Handle the success response (e.g., update the UI)
+                console.log(response);
+                // You may want to remove the image from the UI as well
+                button.prev('img').remove();
+                button.remove();
+            },
+            error: function (error) {
+                // Handle the error response
+                console.error(error);
+            }
+        });
+    });
+});
+</script>
+
+
+
 
   <script>
     $(document).ready(function() {

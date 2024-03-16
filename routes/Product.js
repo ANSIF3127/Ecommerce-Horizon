@@ -37,6 +37,7 @@ router.get("/unlistproduct/:id", ProductController.getUnlistProduct);
 //// listed product management 
 router.get('/listproduct/:id', ProductController.listProduct);
 
+router.post('/remove-image',ProductController.deleteimg)
 
 
 

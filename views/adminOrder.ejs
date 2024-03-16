@@ -1,149 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Order</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="/css/style.css"> <!-- Add your custom styles here -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #e6f7ff; /* Light Blue */
-        }
-
-        header {
-            background-image: linear-gradient(90deg, #020024 0%, #090979 35%, #00d4ff 100%);
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-        }
-
-        .container {
-            margin-top: 20px;
-        }
-
-        .address-card {
-            border: 1px solid #b3d9ff; /* Lighter Blue */
-            border-radius: 10px;
-            margin-bottom: 20px;
-            padding: 20px;
-            background-color: #ffffff; /* White */
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .address-card h5 {
-            color: #005580; /* Darker Blue */
-            margin-bottom: 10px;
-        }
-
-        .address-details p {
-            margin: 5px 0;
-        }
-
-        .btn-action {
-            margin-top: 10px;
-        }
-
-        /* Different button styling */
-        .btn-info,
-        .btn-danger {
-            background-color: #005580;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            text-decoration: none;
-        }
-
-        .btn-info:hover,
-        .btn-danger:hover {
-            background-color: #003366;
-        }
-
-        /* Add style for the top-left aligned button */
-        .add-address-btn {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            margin-left: 20px;
-        }
-        body, h1, h2, p, table {
-    margin: 0;
-    padding: 0;
-}
-
-/* Apply a simple border-collapse to the table */
-.table-container table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-/* Style table headers */
-.table-container th {
-    background-color: #f2f2f2;
-    padding: 10px;
-    text-align: left;
-    font-weight: bold;
-}
-
-/* Style table data cells */
-.table-container td {
-    border: 1px solid #ddd;
-    padding: 10px;
-}
-
-/* Highlight the table rows on hover */
-.table-container tbody tr:hover {
-    background-color: #f5f5f5;
-}
-
-/* Responsive design considerations */
-
-/* Make the table responsive */
-@media screen and (max-width: 600px) {
-    .table-container table {
-        overflow-x: auto;
+    <title>Document</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- DataTable HEADER-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.6/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.6/dist/sweetalert2.all.min.js"></script>
+  <style>
+    /* Your custom styles here */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 250px;
+      background-color: #0b0a0a;
+      padding-top: 25px;
+      color: white;
     }
+
+    .sidebar a {
+      font-size: 17px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .sidebar h2 {
+      color: rgb(248, 248, 249);
+      font-size:30px;
+    }
+
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+    }
+
+    .table-responsive {
+      /* Style to prevent table overflow */
+      overflow-x: auto;
+    }
+
+    .button:hover {
+      box-shadow: 0px 0px 5px #2196F3, /* Blue box shadow color */
+                  0px 0px 30px #2196F3,
+                  0px 0px 90px #2196F3;
+    }
+
+    .button1:hover {
+      box-shadow: 0px 0px 5px #fe21a2,
+                   0px 0px 30px #fe21a2,
+                   0px 0px 90px #fe21a2;
+    }
+
+    /* ////////////////////Toggle dark mode button//////////////////////// */
+.toggle-dark-theme {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+    z-index: 2;
 }
 
-/* Stack the table headers on smaller screens */
-@media screen and (max-width: 400px) {
-    .table-container th {
+.toggle-dark-theme button {
+    width: 70px;
+    background-color: #ccc;
+    border-radius: 20px;
+    border: none;
+    position: relative;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.toggle-dark-theme .icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: #32006a;
+    position: relative;
+    transition: all 0.5s ease;
+}
+
+.toggle-dark-theme .icon::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 400;
+    content: "\f186";
+    position: absolute;
+    color: #f5ecec;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+}
+
+body.dark {
+    background-color: #252525; /* Dark mode background color */
+    color: #fff; /* Dark mode text color */
+}
+
+/* Dark mode styles for sidebar */
+body.dark .sidebar {
+    background-color: #252525;
+    color: #fff;
+    border-right: 1px solid #555; /* Dark mode sidebar border color */
+}
+
+body.dark .sidebar h2 {
+    color: #fcc288; /* Heading color in dark mode sidebar */
+}
+
+body.dark .sidebar a {
+    color: #0013f8; /* Link color in dark mode */
+}
+
+/* Dark mode table styles */
+body.dark .main-content table {
+    border-color: #555; /* Dark mode table border color */
+}
+
+body.dark .main-content th,
+body.dark .main-content td {
+    border-color: #444; /* Dark mode table cell border color */
+    color: #fff;
+}
+
+/* Dark mode styles for alternating row colors */
+body.dark .main-content tbody tr:nth-child(even) {
+    background-color: #353535; /* Dark mode alternate row color */
+    color: #fff;
+}
+
+/* Dark mode styles for table header */
+body.dark .main-content thead {
+    background-color: #303030; /* Dark mode table header background color */
+}
+
+/* Dark mode toggle button styles */
+body.dark .toggle-dark-theme .icon {
+    transform: translateX(calc(100% + 10px));
+    background-color: yellow; /* Dark mode toggle button background color */
+}
+
+body.dark .toggle-dark-theme .icon::before {
+    color: #000;
+    content: "\f185";
+}
+.sidebar .nav-link {
+  margin-bottom: 20px; /* Adjust the value as needed for spacing */
+}
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    @media screen and (max-width: 600px) {
+      th, td {
         display: block;
-    }
-    .table-container td {
-        display: block;
-        text-align: left;
-    }
-    .table-container th, .table-container td {
         width: 100%;
         box-sizing: border-box;
-    }
-}
-@media screen and (max-width: 768px) {
-    header {
-        font-size: 1.5rem;
-    }
-    .table-container table {
-        font-size: 0.8rem;
-    }
-}
-        .btn-dropdown {
-    background-color: transparent;
-    color: inherit;
-    border: 1px solid #ccc; /* Add your desired border color */
-    border-radius: 5px;
-    padding: 0.375rem 0.75rem; /* Adjust padding as needed */
-}
+      }
 
-/* Remove default background color on hover */
+      th {
+        text-align: center;
+      }
+    }
+    
+    .delete-button {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #ff0000; /* Red color for delete button, you can change it to your desired color */
+        color: #fff; /* Text color for the button */
+        text-decoration: none; /* Remove underline from the link */
+        border-radius: 4px; /* Optional: Adds rounded corners */
+    }
+
+    .delete-button:hover {
+        background-color: #cc0000; /* Darker red color on hover */
+    }
+    /* Remove default background color on hover */
 .cancel-btn {
         background-color: #097615; /* Green color */
         color: #fff;
@@ -157,109 +211,152 @@
     .cancel-btn:hover {
         background-color: #078109; /* Darker green on hover */
     }
-        
-    </style>
-     
+  </style>
 </head>
-
 <body>
-   
-    <header>
-        <h1> OrderManagement</h1>
-    </header>
-    <div class="container">
-        <a href="/adminDashboard" class="btn btn-info add-address-btn">Back</a>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>User Name</th>
-                                <th>Product Name</th>
-                                <th>Quantity</th>
-                                <th>Total Prices</th>
-                                <th>Order Date</th>
-                                <th>Payment Method</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
 
-                        <tbody>
-                            <% orderdetalist.forEach((order, index) => { %>
-                                <% order.productcollection.forEach((product, productIndex) => { %>
-                                    <tr>
-                                        <td data-label="User Name"><%= order.address.firstname %></td>
-                                        <td data-label="Product Name"><%= product.productName %></td>
-                                        <td data-label="Quantity"><%= product.quantity %></td>
-                                        <td data-label="Total Prices">₹<%= product.price * product.quantity %></td>
-                                        <td data-label="Order Date"><%= order.orderDate %></td>
-                                        <td data-label="Payment Method"><%= order.paymentMethod %></td>
-                                        <td data-label="Status">
-                                            <% if (product.status === 'Delivered' && product.status !== 'Cancelled') { %>
-                                                <%= product.status %>
-                                            <% } else { %>
-                                                <form action="/update-status/<%= product._id %>/<%= order._id %>" method="post">
-                                                    <div class="dropdown">
-                                                        <select name="status" class="form-select" aria-label="Select Status">
-                                                            <option value="pending" <%= product.status === 'pending' ? 'selected' : '' %>>Pending</option>
-                                                            <option value="Shipped" <%= product.status === 'Shipped' ? 'selected' : '' %>>Shipped</option>
-                                                            <option value="Cancelled" <%= product.status === 'Cancelled' ? 'selected' : '' %>>Cancelled</option>
-                                                            <option value="Delivered" <%= product.status === 'Delivered' ? 'selected' : '' %>>Delivered</option>
-                                                        </select>
-                                                    </div>
-                                                    <input type="hidden" name="productid" value="<%= product._id %>">
-                                                    <td data-label="Action">
-                                                        <% if (product.status !== 'Cancelled') { %>
-                                                            <button type="submit" class="cancel-btn">Update</button>
-                                                        <% } %>
-                                                    </td>
-                                                </form>
-                                            <% } %>
-                                        </td>
-                                    </tr>
-                                <% }); %>
-                            <% }); %>
-                        </tbody>
-                        </table>
-                </div>
-            </div>
-        </div>
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-3 sidebar">
+      <div style="color:aliceblue"><h2>ℍ𝕆ℝ𝕀ℤ𝕆ℕ 𝕄𝕆𝔹𝕀𝕃𝔼𝕊</h2></div>
+      <br>
+      <ul class="nav flex-column">
+        <li class="nav-item button">
+          <a class="nav-link" href="/admin_Dashboard"><i class="fas fa-home"></i> Dashboard</a>
+        </li>
+        <li class="nav-item button">
+          <a class="nav-link" href="/userManagement"><i class="fas fa-users"></i> User Management</a>
+        </li>
+        <li class="nav-item button">
+          <a class="nav-link" href="/productManagement"><i class="fas fa-shopping-cart"></i> Product Management</a>
+        </li>
+        <li class="nav-item button">
+          <a class="nav-link" href="/Category"><i class="fas fa-list"></i> Category</a>
+        </li>
+        <li class="nav-item button">
+          <a class="nav-link" href="/Coupons"><i class="fas fa-tags"></i> Coupon</a>
+        </li>
+        <li class="nav-item button">
+          <a class="nav-link" href="/adminOrder"><i class="fas fa-shopping-bag"></i> Order</a>
+        </li>
+        <li class="nav-item button">
+          <a class="nav-link" href="/Sales"><i class="fas fa-chart-line"></i> Sales</a>
+        </li>
+        <li class="nav-item button">
+          <a class="nav-link" href="/productOffer"><i class="fas fa-percent"></i> Product Offer</a>
+        </li>
+        <br>
+        <br>
+        <li class="nav-item button1">
+          <a id="logout-button" class="nav-link button1" href="/admin_Login"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </li>
+        <!-- Add more sidebar links as needed -->
+      </ul>
     </div>
+ <!-- Content area -->
+ <div class="col-md-9 main-content">
+        <h1 style="text-align: center;"> Order Management</h1>  
+        <br>
+   
 
-    
+        <br>   
+        <br>   
+    <table id="example" class="table table-striped" style="width:100%">
+        <thead>
+          <tr>
+            <th style="background-color:#3da3f6">User Name</th>
+            <th style="background-color:#3da3f6">Product Name</th>
+           
+            <th style="background-color:#3da3f6">Quantity</th>
+            <th style="background-color:#3da3f6">Discount</th>
+            <th style="background-color:#3da3f6">Total Prices</th>
+            <th style="background-color:#3da3f6">Order Date</th>
+            <th style="background-color:#3da3f6">Payment Method</th>
+            <th style="background-color:#3da3f6">Status</th>
+            <th style="background-color:#3da3f6">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% orderdetalist.forEach((order, index) => { %>
+                <% order.productcollection.forEach((product, productIndex) => { %>
+                    <tr>
+                        <td data-label="User Name"><%= order.address.firstname %></td>
+                        <td data-label="Product Name"><%= product.productName %></td>
+                        <td data-label="Quantity"><%= product.quantity %></td>
+                        <td data-label="Quantity"><%= order.Discount %></td>
+                        <td data-label="Total Prices">₹<%= product.price * product.quantity - order.Discount%></td>
+                        <td data-label="Order Date"><%= order.orderDate %></td>
+                        <td data-label="Payment Method"><%= order.paymentMethod %></td>
+                        <td data-label="Status">
+                            <% if (product.status === 'Delivered' && product.status !== 'Cancelled') { %>
+                                <%= product.status %>
+                            <% } else { %>
+                                <form action="/update-status/<%= product._id %>/<%= order._id %>" method="post">
+                                    <div class="dropdown">
+                                        <select name="status" class="form-select" aria-label="Select Status">
+                                            <option value="pending" <%= product.status === 'pending' ? 'selected' : '' %>>Pending</option>
+                                            <option value="Shipped" <%= product.status === 'Shipped' ? 'selected' : '' %>>Shipped</option>
+                                            <option value="Cancelled" <%= product.status === 'Cancelled' ? 'selected' : '' %>>Cancelled</option>
+                                            <option value="Delivered" <%= product.status === 'Delivered' ? 'selected' : '' %>>Delivered</option>
+                                        </select>
+                                    </div>
+                                    <input type="hidden" name="productid" value="<%= product._id %>">
+                                    <td data-label="Action">
+                                        <% if (product.status !== 'Cancelled') { %>
+                                            <button type="submit" class="cancel-btn">Update</button>
+                                        <% } %>
+                                    </td>
+                                </form>
+                            <% } %>
+                        </td>
+                    </tr>
+                <% }); %>
+            <% }); %>
+        </tbody>
+      </table>   
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.8/datatables.min.js"></script>
     <script>
-        
+      new DataTable('#example');
 
-        const hamburgerMenu = document.getElementById("hamburger-icon");
-        const link = document.querySelectorAll(".link");
-        const closeBtn = document.getElementById("close");
-
-        for (let i = 0; i < link.length; i++) {
-            link[i].addEventListener("click", function () {
-                var current = document.getElementsByClassName("active");
-                current[0].className = current[0].className.replace(" active", "");
-                this.className += " active";
+    </script>   
+    <script>
+      ///////////////logout/////////////////////////
+      document.addEventListener("DOMContentLoaded", function () {
+        const logoutButton = document.getElementById("logout-button");
+    
+        if (logoutButton) {
+          logoutButton.addEventListener("click", function (e) {
+            e.preventDefault(); // Prevent the default link behavior
+    
+            // Use SweetAlert2 for confirmation
+            Swal.fire({
+              title: "Are you sure?",
+              text: "Do you really want to logout?",
+              icon: "question",
+              showCancelButton: true,
+              confirmButtonText: "Yes, logout",
+              cancelButtonText: "No, cancel"
+            }).then((result) => {
+              if (result.isConfirmed) {
+                // If the user confirms, redirect to the logout page
+                window.location.href = "/admin_Login";
+              }
             });
+          });
         }
-
-        hamburgerMenu.addEventListener("click", function () {
-            const sidebar = document.getElementById("sidebars");
-            sidebar.classList.toggle("toggle");
-        });
-
-        function closeNav() {
-            const sidebar = document.getElementById("sidebars");
-            sidebar.classList.toggle("toggle");
-        }
-    </script>
-
-   
+      });
+    </script>  
+    
 </body>
-
 </html>
-
-   
-
-  
