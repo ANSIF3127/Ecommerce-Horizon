@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const Swal = require('sweetalert2');//////atert messasge
 const session = require('express-session');
-const mongoose = require("../project/server")
+// const mongoose = require("../project/server")
 const app = express();
 const port = 3001;
 require('dotenv').config();
