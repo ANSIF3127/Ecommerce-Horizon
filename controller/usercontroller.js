@@ -49,6 +49,7 @@ const LoginPost = async (req, res) => {
     if (user !== null) {
       if (password === user.Password || email === user.email) {
         if (!user.isblocked) {
+          
           // Generate and store referral code if not present
           
           //  session here
