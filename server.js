@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-
+require('dotenv').config();
 // Mongoose connection
-mongoose.connect('mongodb://127.0.0.1:27017/test')
+mongoose.connect(process.env.MONGOSTR)
   .then(() => {
     console.log("MongoDB is connected");
   })
