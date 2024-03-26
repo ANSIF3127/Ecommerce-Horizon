@@ -17,14 +17,23 @@ const Cartget=async(req,res)=>{
       
       const userId =  req.session.userid;
       const cartfind = await Carts.find({ userid: userId});
-          // Check stock for each item in the cart
-    for (const cartItem of cartfind) {
-      const product = await Product.findOne({ _id: cartItem.productid });
 
-      // Check if stock is less than 1
-      if (product && product.Stock < 1) {
-        cartItem.stockError = 'Product out of stock';
+          // Check stock for each item in the cart
+          for (const cartItem of cartfind) {
+            const product = await Product.findOne({ _id: cartItem.productid });
+      
+        
+  // Check if any item in the cart is out of stock
+  let isOutOfStock = false;
+  for (const cartItem of cartfind) {
+      const product = await Product.findOne({ _id: cartItem.productid });
+      if (!product || product.Stock < 1) {
+          isOutOfStock = true;
+          break;
       }
+  }
+
+     
     }
    // Calculate  total sum  all cart items
    let overallTotalSum = 0;
@@ -104,13 +113,23 @@ console.log("kjsfhlkasjfhl", productid);
   try {
 
     const cartItem = await Carts.findById(productid)
+ // Fetch the product details associated with the cart item
+ const product = await Product.findById(cartItem.productid);
 
     console.log("item is id is aa",cartItem);
 
     if (!cartItem) {
       return res.status(404).json({ error: 'CartItem not found' });
     }
+  
 
+
+  
+    // Check if stock is less than 1 before increasing quantity
+  if (action === 'increase' && cartItem.quantity + 1 > product.Stock) {
+    cartItem.stockError = 'Out of stock';
+    return res.status(400).json({ error: 'Out of stock', cartItem });
+  }
     
     if (action === 'increase') {
       cartItem.quantity += 1;

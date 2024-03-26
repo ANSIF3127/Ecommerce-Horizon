@@ -38,16 +38,16 @@ console.log('dataaaaaaaaaaaaa',couponData);
 
 
 ///Delete coupon 
-const deleteCoupon=async(req,res)=>{
-    try{
-        const Couponid=req.params.id;
-        await couponCollection.findByIdAndDelete(Couponid);
-        res.redirect('/Coupons')
-        }catch(error){
-            console.error(err);
-            return res.status(500).send("Failed to delete Coupon.");
-          }
-    }
+// const deleteCoupon=async(req,res)=>{
+//     try{
+//         const Couponid=req.params.id;
+//         await couponCollection.findByIdAndDelete(Couponid);
+//         res.redirect('/Coupons')
+//         }catch(error){
+//             console.error(err);
+//             return res.status(500).send("Failed to delete Coupon.");
+//           }
+//     }
 
 
 
@@ -61,7 +61,7 @@ const deleteCoupon=async(req,res)=>{
             console.log('coupon appled suceessons ')
             let currentDate = new Date();
             const couponcode = req.body.coupencode;
-    
+            
             if (req.session.coupon && couponcode.toLowerCase() === req.session.coupencode.toLowerCase()) {
                 console.log('inside the lowercase session');
                 return res.status(400).json({
@@ -69,7 +69,8 @@ const deleteCoupon=async(req,res)=>{
                     message: 'Coupon code has already been applied.',
                 });
             }
-    
+            console.log('coupen session value is coupen',req.session.coupon);
+            console.log('coupen session value is coupencode',req.session.coupencode);
             const coupon = await couponCollection.findOne({ 
                 coupencode: { $regex: new RegExp(couponcode, 'i') } });
             console.log(coupon && coupon.expiredate > currentDate)
@@ -107,6 +108,8 @@ const couponremove = async(req,res)=>{
         await orders.updateMany({}, { $set: { Discount: 0, intDiscount: 0 } });
 
         // Send a success response
+        req.session.coupencode=null
+        req.session.coupon=null
         res.json({ success: true });
     } catch (error) {
         console.error('Error deleting coupon:', error);
@@ -119,7 +122,7 @@ module.exports = {
         couponget,
         addcouponget,
         addcouponpost,
-        deleteCoupon,
+        // deleteCoupon,
         ShowCouponUser,
         coupencheck,
          couponremove,

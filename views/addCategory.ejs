@@ -19,6 +19,20 @@
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
+    #backButton {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Hover effect */
+  #backButton:hover {
+    background-color: darkred;
+  }
   </style>
 </head>
 <body>
@@ -39,12 +53,18 @@
             </div>
             <button type="submit" class="btn btn-primary btn-block">Add Category</button>
           </form>
-
+          <br>
+          <button id="backButton"> Back</button>
         
         </div>
       </div>
     </div>
   </div>
+  <script>
+    document.getElementById('backButton').addEventListener('click', function() {
+      window.history.back();
+    });
+    </script>
   <script>
   function validateForm() {
     var categoryName = document.getElementById('categoryName').value;

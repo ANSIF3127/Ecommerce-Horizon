@@ -40,7 +40,7 @@
 		.navbar {
 			padding: 0.5rem 1rem;
 			/* Adjust padding to reduce height */
-			height: 70px;
+			height: 70px;	
 			/* Adjust the height as needed */
 		}
 
@@ -599,7 +599,7 @@
 				orderId = response.orderId;
 				orderprice = response.orderprice; // Assign response.orderprice to orderprice
 				ordresignature = response.signature
-				$("#rzp-button1").show();
+				
 
 			}); 
 		});
@@ -609,7 +609,7 @@
 
 			console.log('btn clicked');
 			var options = {
-				"key": "rzp_test_V0Xy3c0YOvmOlE",
+				"key": "rzp_test_XaITEs70FgNsZH",
 				"amount": (overallTotalPrice || orderprice) * 100,
 				"currency": "INR",
 				"name": "ℍ𝕆ℝ𝕀ℤ𝕆ℕ 𝕄𝕆𝔹𝕀𝕃𝔼𝕊",
@@ -653,6 +653,7 @@
 			};
 			var rzp1 = new Razorpay(options);
 			rzp1.on('payment.failed', function (response) {
+				console.log("error data",response);
 				alert(response.error.code);
 				alert(response.error.description);
 				alert(response.error.source);

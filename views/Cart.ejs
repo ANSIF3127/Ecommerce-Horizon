@@ -211,23 +211,24 @@
                           <td>₹<%= product.price %></td>
                           <td>
                         
-                            <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
-                              <div class="input-group-prepend">
-                                <button class="btn btn-outline-black decrease" type="button" data-product-id="<%= product._id %>" data-index="<%= index %>">−</button>
+                            
+                              <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
+                                <div class="input-group-prepend">
+                                  <button class="btn btn-outline-black decrease" type="button" data-product-id="<%= product._id %>" data-index="<%= index %>">−</button>
+                                </div>
+                                <input type="text" class="form-control text-center quantity-amount" value="<%= product.quantity %>" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" id="quantity<%= index %>">
+                                <div class="input-group-append">
+                                  <button class="btn btn-outline-black increase" type="button" data-product-id="<%= product._id %>" data-index="<%= index %>">+</button>
+                                </div>
                               </div>
-                              <input type="text" class="form-control text-center quantity-amount" value="<%= product.quantity %>" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" id="quantity<%= index %>">
-                              <div class="input-group-append">
-                                <button class="btn btn-outline-black increase" type="button" data-product-id="<%= product._id %>" data-index="<%= index %>">+</button>
-                              </div>
-                            </div>
-                            <% if (product.stockError) { %>
-                              <div class="text-danger"><%= product.stockError %></div>
-                              <td></td>
-                              <% } else { %>
-                              <td><div id="total<%= index %>">₹<%= product.price * product.quantity %></div></td> 
-                            <% } %>
+                              <div id="error<%= index %>" class="text-danger"></div> <!-- Error message element -->
+                             
+                            
+                             
+                              <td><div id="total<%= index %>">₹<%= product.price * product.quantity %></div>
+                                
                           </td>
-                         
+                        
                           <td><a href="/removecart/<%=product._id %>" class="btn btn-black btn-sm">X</a></td>
                         </tr>
         
@@ -390,7 +391,14 @@
           })
             .then(response => response.json())
             .then(data => {
-              if (data.success) {
+              if (data.error) {
+          // Display the error message
+          const errorMessage = data.error;
+          const errorElement = document.getElementById(`error${index}`);
+          if (errorElement) {
+            errorElement.textContent = errorMessage;
+          }
+        } else if (data.success) {
                 quantityElement.value = newQuantity;
     
                 const totalElement = document.getElementById(`total${index}`);
@@ -461,7 +469,9 @@
       });
     }
   });
-</script>  
+</script>
+
+
 </body>
 
 </html>

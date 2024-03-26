@@ -41,7 +41,20 @@ body {
 }
 
 /* Additional styles can be added based on your preferences */
+#backButton {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
 
+  /* Hover effect */
+  #backButton:hover {
+    background-color: darkred;
+  }
   </style>
 </head>
 <body>
@@ -58,11 +71,17 @@ body {
               </div>
               <button type="submit" class="btn btn-primary btn-block">Add Category</button>
             </form>
+            <br>
+            <button id="backButton">Go Back</button>
           </div>
         </div>
       </div>
       
-
+      <script>
+        document.getElementById('backButton').addEventListener('click', function() {
+          window.history.back();
+        });
+        </script>
   <!-- Bootstrap JS (optional, only needed if you require JavaScript) -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>

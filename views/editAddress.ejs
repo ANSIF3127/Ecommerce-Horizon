@@ -7,7 +7,22 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+<style>
+    #backButton {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
 
+  /* Hover effect */
+  #backButton:hover {
+    background-color: darkred;
+  }
+</style>
 <body class="container">
   <form action="/addresseditpost/<%= oldaddress._id %>" method="post" id="editAddressForm">
     <h1>Edit Address</h1>
@@ -71,12 +86,19 @@
           </div>
         </div>
         <button class="waves-effect waves-light btn right" type="submit">Submit</button>
+        
       </form>
+      <button id="backButton">Go Back</button>
     </div>
   </form>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.getElementById('backButton').addEventListener('click', function() {
+      window.history.back();
+    });
+    </script>
   <script>
     $(document).ready(function () {
       $('#editAddressForm').submit(function (event) {

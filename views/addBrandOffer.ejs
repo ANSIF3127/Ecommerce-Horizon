@@ -68,6 +68,20 @@
         .error-message {
     color: red;
 }
+#backButton {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Hover effect */
+  #backButton:hover {
+    background-color: darkred;
+  }
     </style>
     <script>
         function validateForm() {
@@ -113,7 +127,13 @@
     <p class="error-message" id="allofferError"></p>
 
     <input type="submit" value="Submit">
+    <button id="backButton">Go Back</button>
 </form>
 
+<script>
+    document.getElementById('backButton').addEventListener('click', function() {
+      window.history.back();
+    });
+    </script>
 </body>
 </html>

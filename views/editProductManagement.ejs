@@ -25,6 +25,7 @@
       font-size: 0.8em;
       margin-top: 5px;
     }
+   
   </style>
 </head>
 <body>
@@ -69,6 +70,7 @@
         <textarea class="form-control" id="description" rows="3" placeholder="Enter product description" name="Description"><%= product.Description %></textarea>
         <div class="error-message" id="descriptionError"></div>
       </div>
+
       <div class="form-group">
         <label for="image">Image URL</label>
         <input type="file" name="image" accept="image/*" class="form-control" id="image" placeholder="Enter image URL"  multiple>
@@ -93,8 +95,11 @@
       </div>
       </div>
 
+     
+      
       <button type="submit" class="btn btn-primary">Update</button>
     </form>
+   
   </div>
 
  
@@ -174,11 +179,7 @@
           e.preventDefault();
         }
 
-        var image = $("#image").val();
-        if (image.trim() === "") {
-          $("#imageError").text("Image is required");
-          e.preventDefault();
-        }
+        
       });
     });
   </script>

@@ -11,13 +11,15 @@ router.get('/Coupons',CouponControllers.couponget);
 ////addcoupon 
 router.get('/addCoupon',CouponControllers.addcouponget)
 router.post('/Coupons',CouponControllers.addcouponpost)
-/// delete coupon
-router.get('/deletecoupon/:id',CouponControllers.deleteCoupon)
-
-
 
 /// usercouponshow
 router.get('/userCouponShow',CouponControllers.ShowCouponUser)
+
+
+
+
+/// delete coupon
+// router.get('/deletecoupon/:id',CouponControllers.deleteCoupon)
 
 
 //// remove coupon in the checkout page

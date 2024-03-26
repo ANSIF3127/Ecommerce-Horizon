@@ -69,6 +69,20 @@
             margin-bottom: 10px;
             font-size: 14px;
         }
+        #backButton {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Hover effect */
+  #backButton:hover {
+    background-color: darkred;
+  }
     </style>
 </head>
 <body>
@@ -88,7 +102,14 @@
         <p class="error-message" id="offerPercentageError"></p>
 
         <button type="submit">Add Offer</button>
+        
+        <button id="backButton">Go Back</button>
     </form>
+    <script>
+        document.getElementById('backButton').addEventListener('click', function() {
+          window.history.back();
+        });
+        </script>
     <script>
           function validateForm() {
             var productName = document.getElementById("productName").value;

@@ -1,7 +1,7 @@
 
 const Product = require('../model/admin/Product')
 const Categorymgm =require("../model/admin/Category")
-
+const cart = require('../model/admin/cart')
 ////product Managment get 
 const productManagement=async(req,res)=>{
   try {
@@ -86,46 +86,58 @@ const updateGet =async (req,res)=>{
   }
 
   /////// Edit  post 
-  const updatePost = async (req, res) => {
-    const id = req.params.id;
-
-    
-    const newProductData = {
-        ProductName: req.body.ProductName,
-        Category: req.body.Category,
-        Price: req.body.Price,
-        Stock: req.body.Stock,
-        Description: req.body.Description,
-        Color: req.body.Color,
-        Rating: req.body.Rating,
-        // image: req.files.map(file => file.path.substring(6))
+ 
+const updatePost = async (req, res) => {
+  try {
+    const productId = req.params.id;
+    const updatedProduct = {
+      ProductName: req.body.ProductName,
+      Category: req.body.Category,
+      Price: req.body.Price,
+      Stock: req.body.Stock,
+      Rating: req.body.Rating,
+      Description: req.body.Description,
+      // image: req.files.map(file => file.path.substring(6))
     };
 
-    try {
+    // Update the product
+    const updatedProductResult = await Product.findByIdAndUpdate(productId, updatedProduct, { new: true });
     
-        // Use findByIdAndUpdate to enable population
-        await Product.findByIdAndUpdate(id, newProductData, { new: true }).populate('Category');
-
-
-        if (req.files && req.files.length > 0) {
-          const newImages = req.files.map(file => file.path.substring(6))
-          newProductData.image = newProductData.image.concat(newImages);
-        }
-        if (!newProductData) {
-          console.log("Product not found");
-          res.status(404).send("Product not found");
-          return;
-        }
-        await newProductData.save();
-        console.log(newProductData);
-
-        res.redirect('/ProductManagement');
-    } catch (err) {
-        console.error("Update failed", err);
-        res.redirect('/ProductManagement');
+    if (!updatedProductResult) {
+      console.log("Product not found");
+      res.status(404).send("Product not found");
+      return;
     }
-};
 
+    // Update the cart related to the updated product
+    const updatedCart = await cart.findOneAndUpdate({ productid: productId }, {
+      productname: updatedProductResult.ProductName,
+      Category: updatedProductResult.Category,
+      price: updatedProductResult.Price,
+      // You can update other cart fields here if needed
+      // image: updatedProductResult.image
+    }, { new: true });
+
+    if (!updatedCart) {
+      console.log("Cart not found for the updated product");
+      // Handle the situation where the cart for the updated product is not found
+    }
+
+    // Handle image update if needed
+    if (req.files && req.files.length > 0) {
+      const newImages = req.files.map(file => file.path.substring(6));
+      updatedProductResult.image = updatedProductResult.image.concat(newImages);
+      await updatedProductResult.save();
+    }
+
+    console.log("Updated Product:", updatedProductResult);
+    console.log("Updated Cart:", updatedCart);
+    res.redirect("/ProductManagement");
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
 //// Delete product management 
 const getDeleteProductManagement= async (req, res) => {
     try {

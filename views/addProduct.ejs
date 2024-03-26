@@ -10,7 +10,22 @@
   </style>
 </head>
 <body>
-
+  <style>
+    #backButton {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+  
+    /* Hover effect */
+    #backButton:hover {
+      background-color: darkred;
+    }
+  </style>
   <div class="container mt-4">
     <h2>Add Product</h2>
     <form method="post" action="/addProduct" enctype="multipart/form-data" id="addProductForm" >
@@ -60,6 +75,7 @@
           <div id="imageError" class="text-danger validation-msg"></div>
         </div>
         <button type="submit" class="btn btn-primary" id="submitButton">Add Product</button>
+        <button id="backButton">Go Back</button>
       </div>
       
     </form>
@@ -69,7 +85,11 @@
       <p class="text-danger"><%= message %></p>
     <% } %>
   </div>
-  
+  <script>
+    document.getElementById('backButton').addEventListener('click', function() {
+      window.history.back();
+    });
+    </script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
